@@ -1,0 +1,26 @@
+@import 'reset.scss';
+@import "variables/global.scss";
+@import "themes/dark.theme.scss";
+@import "themes/light.theme.scss";
+
+
+.app {
+  font: var(--font-m);
+
+  background-color: var(--bg-primary);
+
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--primary-color);
+}
+
+.app-container {
+  display: flex;
+}
+
+.app-inner {
+  flex-grow: 1;
+  padding: 20px;
+}

@@ -1,0 +1,23 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--navbar-height);
+  padding: 0 20px;
+}
+
+.link {
+  margin: 0 15px;
+}
+
+.light {
+  border-bottom: 1px solid var(--bg-secondary);
+}
+
+.dark {
+  background-color: var(--bg-secondary);
+}
+
+.langSwither {
+  margin-left: 10px;
+}
