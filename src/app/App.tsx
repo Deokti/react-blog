@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 
 import '@fontsource/roboto';
 import './styles/index.scss';
@@ -11,6 +11,12 @@ import 'shared/config/i18n/i18n';
 
 export const App = () => {
   const { theme } = useTheme();
+
+  useEffect(() => {
+    if (Math.random() > 0.5) {
+      throw new Error('222');
+    }
+  }, []);
 
   return (
     <div className={cn('app', [theme])}>
