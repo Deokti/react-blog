@@ -14,9 +14,15 @@ export default {
   ],
   moduleDirectories: [
     'node_modules',
+    'src',
   ],
   testMatch: [
     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
   ],
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
   rootDir: '../../',
+  moduleNameMapper: {
+    // eslint-disable-next-line max-len
+    '\\.(css|scss)$': 'identity-obj-proxy',
+  },
 };
