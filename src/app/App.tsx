@@ -1,22 +1,16 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 
 import '@fontsource/roboto';
 import './styles/index.scss';
 import { cn } from 'shared/lib/classNames';
-import { Navbar } from 'widgets/Navbar/ui/Navbar';
-import { Sidebar } from 'widgets/Sidebar/Sidebar';
+import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
 import { AppRouter } from './providers/router/AppRouter';
-import { useTheme } from './providers/ThemeProvider/lib/useTheme';
+import { useTheme } from './providers/ThemeProvider';
 import 'shared/config/i18n/i18n';
 
 export const App = () => {
   const { theme } = useTheme();
-
-  useEffect(() => {
-    if (Math.random() > 0.5) {
-      throw new Error('222');
-    }
-  }, []);
 
   return (
     <div className={cn('app', [theme])}>

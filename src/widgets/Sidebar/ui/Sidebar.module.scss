@@ -2,8 +2,7 @@
   height: calc(100vh - var(--navbar-height));
   max-width: var(--sidebar-width);
   width: 100%;
-
-  transition: max-width .2s ease-in-out;
+  transition: max-width 0.2s ease-in-out;
   padding: 0 10px;
 }
 

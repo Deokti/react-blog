@@ -1,3 +1,3 @@
-import { cn } from './classnames';
+import { cn } from './classNames';
 
 export { cn };

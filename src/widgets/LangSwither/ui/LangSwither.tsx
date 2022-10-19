@@ -13,7 +13,9 @@ export const LangSwither = ({ className }: LangSwitherProps) => {
   const [toggle, setToggle] = useState(false);
 
   const onToggle = () => setToggle((toggle) => !toggle);
-  const language = flagConfig[i18n.language as AppLanguages];
+  const language = flagConfig[i18n.language as AppLanguages]
+    || flagConfig[AppLanguages.RU];
+
   const onSelectedLang = (lang: string) => () => {
     i18n.changeLanguage(lang);
     setToggle(false);
@@ -21,9 +23,9 @@ export const LangSwither = ({ className }: LangSwitherProps) => {
 
   return (
     <div className={cn(styles.langswither, [className])}>
-      <div className={styles.selected} onClick={onToggle}>
-        <span className={styles.languageFlag}>{language.flag}</span>
-        <span className={styles.selectedName}>{language.name}</span>
+      <div className={styles.selected} onClick={onToggle} aria-hidden="true">
+        <span className={styles.languageFlag}>{language?.flag}</span>
+        <span className={styles.selectedName}>{language?.name}</span>
       </div>
 
       <ul
@@ -36,9 +38,10 @@ export const LangSwither = ({ className }: LangSwitherProps) => {
             className={styles.language}
             key={key}
             onClick={onSelectedLang(key)}
+            aria-hidden="true"
           >
-            <span className={styles.languageFlag}>{flag}</span>
-            <span className={styles.languageName}>{name}</span>
+            <span className={styles?.languageFlag}>{flag}</span>
+            <span className={styles?.languageName}>{name}</span>
           </li>
         ))}
       </ul>

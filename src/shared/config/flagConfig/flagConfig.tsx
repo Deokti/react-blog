@@ -16,12 +16,12 @@ export interface Language {
 export const flagConfig: Record<AppLanguages, Language> = {
   [AppLanguages.RU]: {
     name: 'Русский',
-    key: 'ru',
+    key: AppLanguages.RU,
     flag: <RussianFlag />,
   },
   [AppLanguages.EN]: {
     name: 'English',
-    key: 'en',
+    key: AppLanguages.EN,
     flag: <USAFlag />,
   },
 };
