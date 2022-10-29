@@ -1,6 +1,7 @@
 import { Theme } from 'app/providers/ThemeProvider';
 import { useState } from 'react';
 import { cn } from 'shared/lib/classNames';
+import { ThemeSwither } from 'widgets/ThemeSwither';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -21,6 +22,8 @@ export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
       ])}
     >
       <button onClick={onToggle} type="button">onToggle</button>
+
+      <ThemeSwither className={styles.themeSwither} />
     </div>
   );
 };
