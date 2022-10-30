@@ -2,6 +2,8 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { useState } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { ThemeSwither } from 'widgets/ThemeSwither';
+import { AiOutlineRight } from 'react-icons/ai';
+import { Button } from 'shared/ui/Button';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -21,9 +23,10 @@ export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
         styles[theme],
       ])}
     >
-      <button onClick={onToggle} type="button">onToggle</button>
-
       <ThemeSwither className={styles.themeSwither} />
+      <Button className={cn(styles.button, [styles[theme]])} onClick={onToggle}>
+        <AiOutlineRight size={25} className={styles.icon} />
+      </Button>
     </div>
   );
 };

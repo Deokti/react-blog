@@ -7,8 +7,17 @@
   padding: 0 10px;
 }
 
+.icon {
+  fill: var(--primary-color);
+  transform: rotate(180deg);
+}
+
 .collapsed {
   max-width: var(--sidebar-collapsed);
+
+  .icon {
+    transform: rotate(0);
+  }
 }
 
 .light {
@@ -25,4 +34,22 @@
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.button {
+  position: absolute;
+  bottom: 10px;
+  padding: 10px;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.button.light {
+  border: 1px solid var(--bg-secondary);
+  background-color: transparent;
+  border-left: none;
+}
+
+.button.dark {
+  background-color: var(--bg-secondary);
 }
