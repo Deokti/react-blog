@@ -10,10 +10,7 @@ import {
 } from 'webpack';
 import { BuildOptions } from './interfaces/config.interface';
 
-export function webpackPlugins({
-  paths,
-  isDev,
-}: BuildOptions): WebpackPluginInstance[] {
+export function webpackPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[] {
   const plugins: WebpackPluginInstance[] = [
     new ProgressPlugin(),
     new HtmlWebpackPlugin({
@@ -28,9 +25,8 @@ export function webpackPlugins({
   if (isDev) {
     plugins.push(new ReactRefreshWebpackPlugin());
     plugins.push(new HotModuleReplacementPlugin());
+    plugins.push(new BundleAnalyzerPlugin());
   }
-
-  plugins.push(new BundleAnalyzerPlugin());
 
   return plugins;
 }

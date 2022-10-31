@@ -1,4 +1,4 @@
-import AboutPage from 'pages/AbountPage/ui/AboutPage';
+import { AboutPage } from 'pages/AbountPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { RouteProps } from 'react-router-dom';
