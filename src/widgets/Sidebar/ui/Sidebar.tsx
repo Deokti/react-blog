@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { ThemeSwither } from 'widgets/ThemeSwither';
 import { AiOutlineRight } from 'react-icons/ai';
-import { Button } from 'shared/ui/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -13,6 +13,9 @@ interface SidebarProps {
 
 export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
   const [toggle, setToggle] = useState(false);
+
+  console.log(theme);
+
 
   const onToggle = () => setToggle((toggle) => !toggle);
 
@@ -29,6 +32,7 @@ export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
         className={cn(styles.button, [styles[theme]])}
         onClick={onToggle}
         data-testid="on-toggle"
+        theme={ButtonTheme.CLEAR}
       >
         <AiOutlineRight size={25} className={styles.icon} />
       </Button>

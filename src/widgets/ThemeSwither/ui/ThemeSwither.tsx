@@ -1,6 +1,6 @@
 import { useTheme, Theme } from 'app/providers/ThemeProvider';
 import { cn } from 'shared/lib/classNames';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button';
 import ThemeDark from 'shared/assets/icons/theme-dark.svg';
 import LightDark from 'shared/assets/icons/theme-light.svg';
 import styles from './ThemeSwither.module.scss';
@@ -15,7 +15,11 @@ export const ThemeSwither = ({ className }: ThemeSwitherProps) => {
   const isDark = theme === Theme.DARK;
 
   return (
-    <Button className={cn(styles.swither, [className])} onClick={toggleTheme}>
+    <Button
+      className={cn(styles.swither, [className])}
+      onClick={toggleTheme}
+      theme={ButtonTheme.CLEAR}
+    >
       <label className={styles.label}>
         <input
           type="checkbox"

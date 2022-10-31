@@ -3,6 +3,7 @@
 *,
 ::after,
 ::before { box-sizing: border-box; }
+
 html { font-family: sans-serif; line-height: 1.15; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
 
 article,
@@ -18,11 +19,9 @@ section { display: block; }
 
 body {
   margin: 0;
-
   text-align: left;
-
   color: #212529;
-  background-color: #FFF;
+  background-color: #fff;
 
   /* stylelint-disable-next-line max-line-length */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -34,7 +33,6 @@ body {
 
 hr {
   overflow: visible;
-
   box-sizing: content-box;
   height: 0;
 }
@@ -51,14 +49,12 @@ abbr[data-original-title],
 abbr[title] {
   cursor: help;
   text-decoration: underline dotted;
-
   border-bottom: 0;
   text-decoration-skip-ink: none;
 }
 
 address {
   margin-bottom: 1rem;
-
   font-style: normal;
   line-height: inherit;
 }
@@ -82,9 +78,7 @@ small { font-size: 80%; }
 sub,
 sup {
   position: relative;
-
   vertical-align: baseline;
-
   font-size: 75%;
   line-height: 0;
 }
@@ -93,8 +87,7 @@ sup { top: -0.5em; }
 
 a {
   text-decoration: none;
-
-  color: #007BFF;
+  color: #007bff;
   background-color: transparent;
 }
 
@@ -104,13 +97,11 @@ a:hover {
 
 a:not([href]) {
   text-decoration: none;
-
   color: inherit;
 }
 
 a:not([href]):hover {
   text-decoration: none;
-
   color: inherit;
 }
 
@@ -131,7 +122,6 @@ samp {
 
 pre {
   overflow: auto;
-
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -139,13 +129,11 @@ figure { margin: 0 0 1rem; }
 
 img {
   vertical-align: middle;
-
   border-style: none;
 }
 
 svg {
   overflow: hidden;
-
   vertical-align: middle;
 }
 table { border-collapse: collapse; }
@@ -153,18 +141,14 @@ table { border-collapse: collapse; }
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-
   caption-side: bottom;
-
   text-align: left;
-
-  color: #6C757D;
+  color: #6c757d;
 }
 th { text-align: inherit; }
 
 label {
   display: inline-block;
-
   margin-bottom: 0.5rem;
 }
 button { border-radius: 0; }
@@ -176,7 +160,6 @@ optgroup,
 select,
 textarea {
   margin: 0;
-
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -204,7 +187,6 @@ button:not(:disabled) { cursor: pointer; }
 [type="submit"]::-moz-focus-inner,
 button::-moz-focus-inner {
   padding: 0;
-
   border-style: none;
 }
 
@@ -218,7 +200,6 @@ input[type="time"] { appearance: listbox; }
 
 textarea {
   overflow: auto;
-
   resize: vertical;
 }
 
@@ -226,22 +207,17 @@ fieldset {
   min-width: 0;
   margin: 0;
   padding: 0;
-
   border: 0;
 }
 
 legend {
   display: block;
-
   width: 100%;
   max-width: 100%;
   margin-bottom: 0.5rem;
   padding: 0;
-
   white-space: normal;
-
   color: inherit;
-
   font-size: 1.5rem;
   line-height: inherit;
 }
@@ -256,9 +232,7 @@ output { display: inline-block; }
 
 summary {
   display: list-item;
-
   cursor: pointer;
 }
 template { display: none; }
 [hidden] { display: none !important; }
-

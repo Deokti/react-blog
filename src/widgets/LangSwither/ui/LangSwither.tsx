@@ -15,7 +15,7 @@ export const LangSwither = ({ className }: LangSwitherProps) => {
 
   const onToggle = () => setToggle((toggle) => !toggle);
   const onClickAway = () => setToggle(false);
-  const language = flagConfig[i18n.language as AppLanguages];
+  const language = flagConfig[i18n.language as AppLanguages] || flagConfig[AppLanguages.RU];
 
   const onSelectedLang = (lang: string) => () => {
     i18n.changeLanguage(lang);
@@ -24,7 +24,6 @@ export const LangSwither = ({ className }: LangSwitherProps) => {
 
   return (
     <ClickAwayListener onClickAway={onClickAway}>
-
       <div className={cn(styles.langswither, [className])}>
         <div className={styles.selected} onClick={onToggle} aria-hidden="true">
           <span className={styles.languageFlag}>{language?.flag}</span>
