@@ -23,11 +23,7 @@ export const ThemeSwither = ({ className }: ThemeSwitherProps) => {
           defaultChecked={isDark}
         />
         <div className={styles.div}>
-          {theme === Theme.LIGHT ? (
-            <LightDark width={10} />
-          ) : (
-            <ThemeDark width={10} />
-          )}
+          {isDark ? <ThemeDark width={10} /> : <LightDark width={10} />}
         </div>
       </label>
     </Button>

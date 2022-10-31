@@ -1,3 +1,5 @@
+import path from 'path';
+
 export default {
   clearMocks: true,
   testEnvironment: 'jsdom',
@@ -24,5 +26,6 @@ export default {
   moduleNameMapper: {
     // eslint-disable-next-line max-len
     '\\.(css|scss)$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'JestMockSvg.tsx'),
   },
 };

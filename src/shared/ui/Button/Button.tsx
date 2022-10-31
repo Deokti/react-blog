@@ -14,7 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: FC<ButtonProps> = (props) => {
   const {
-    className,
+    className = '',
     children,
     theme = ButtonTheme.CLEAR,
     type,
@@ -23,10 +23,11 @@ export const Button: FC<ButtonProps> = (props) => {
 
   return (
     <button
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...otherProps}
       // eslint-disable-next-line react/button-has-type
       type={type}
-      className={cn(styles.button, [className, styles[theme]])}
+      className={cn(styles.button, [styles[theme], className])}
     >
       {children}
     </button>

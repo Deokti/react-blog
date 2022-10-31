@@ -18,13 +18,18 @@ export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
 
   return (
     <div
+      data-testid="sidebar"
       className={cn(styles.sidebar, { [styles.collapsed]: toggle }, [
         className,
         styles[theme],
       ])}
     >
       <ThemeSwither className={styles.themeSwither} />
-      <Button className={cn(styles.button, [styles[theme]])} onClick={onToggle}>
+      <Button
+        className={cn(styles.button, [styles[theme]])}
+        onClick={onToggle}
+        data-testid="on-toggle"
+      >
         <AiOutlineRight size={25} className={styles.icon} />
       </Button>
     </div>

@@ -15,7 +15,7 @@ export const cn = (
       ? mods
       : Object.entries(mods)
         .filter(([_, value]) => value === true)
-        .map(([value]) => value);
+        .map(([value]) => value.trim());
 
     clx.push(...modsObject);
   }
