@@ -2,7 +2,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { useState } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { ThemeSwither } from 'widgets/ThemeSwither';
-import { AiOutlineFileSearch, AiOutlineHome, AiOutlineRight } from 'react-icons/ai';
+import { AiOutlineRight } from 'react-icons/ai';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { AppLink } from 'shared/ui/AppLink';
 import { useTranslation } from 'react-i18next';
