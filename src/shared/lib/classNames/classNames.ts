@@ -1,10 +1,6 @@
 export type Mods = Record<string, boolean | string>;
 
-export const cn = (
-  className: string,
-  mods?: Mods | string[],
-  additional?: string[],
-): string => {
+export const cn = (className: string, mods?: Mods | string[], additional?: string[]): string => {
   const clx: string[] = [className];
 
   const isMods = typeof mods !== 'undefined';
@@ -14,6 +10,7 @@ export const cn = (
     const modsObject = Array.isArray(mods)
       ? mods
       : Object.entries(mods)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .filter(([_, value]) => value === true)
         .map(([value]) => value.trim());
 

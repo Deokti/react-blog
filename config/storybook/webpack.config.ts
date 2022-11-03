@@ -1,5 +1,5 @@
 import path from 'path';
-import { Configuration, RuleSetRule } from 'webpack';
+import { Configuration } from 'webpack';
 import { storybookSvgDisabled } from '../lib/StorybookSvgDisabled';
 import { scssLoaders } from '../loaders/scssLoaders';
 import { svgLoader } from '../loaders/svgLoader';
@@ -19,7 +19,8 @@ export default ({ config }: DefaultConfig) => {
   config.resolve?.extensions?.push(...extensions);
 
   // Disabling basic rules for SVG
-  config.module.rules = storybookSvgDisabled(config);
+  // eslint-disable-next-line no-param-reassign
+  config.module!.rules = storybookSvgDisabled(config);
 
   // Svg loader
   config.module?.rules?.push(SVGLoader);

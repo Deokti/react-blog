@@ -1,6 +1,5 @@
 import { Theme } from 'app/providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { cn } from 'shared/lib/classNames';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { LangSwither } from 'widgets/LangSwither/ui/LangSwither';

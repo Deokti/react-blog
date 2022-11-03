@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Theme } from 'app/providers/ThemeProvider';
 import { PageLoader } from './PageLoader';
 
 export default {
