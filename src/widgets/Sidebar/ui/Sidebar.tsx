@@ -2,8 +2,12 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { useState } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { ThemeSwither } from 'widgets/ThemeSwither';
-import { AiOutlineRight } from 'react-icons/ai';
+import { AiOutlineFileSearch, AiOutlineHome, AiOutlineRight } from 'react-icons/ai';
 import { Button, ButtonTheme } from 'shared/ui/Button';
+import { AppLink } from 'shared/ui/AppLink';
+import { useTranslation } from 'react-i18next';
+
+import { menuConfig } from 'app/providers/router/menuConfig';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -13,6 +17,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
   const [toggle, setToggle] = useState(false);
+  const { t } = useTranslation();
 
   const onToggle = () => setToggle((toggle) => !toggle);
 
@@ -24,6 +29,18 @@ export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
         styles[theme],
       ])}
     >
+
+      <ul className={styles.menu}>
+        {Object.values(menuConfig).map(({ Icon, name, path }) => (
+          <li className={styles.item} key={path}>
+            <AppLink to={path} className={styles.appLink}>
+              <Icon className={styles.itemIcon} size={25} />
+              <p className={styles.itemText}>{t(name)}</p>
+            </AppLink>
+          </li>
+        ))}
+      </ul>
+
       <ThemeSwither className={styles.themeSwither} />
       <Button
         className={cn(styles.button, [styles[theme]])}

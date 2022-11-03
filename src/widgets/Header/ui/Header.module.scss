@@ -1,19 +1,9 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: var(--header-height);
   padding: 0 20px;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.link {
-  margin: 0 15px;
 }
 
 .light {
@@ -22,8 +12,4 @@
 
 .dark {
   background-color: var(--bg-secondary);
-}
-
-.langSwither {
-  margin-left: 10px;
 }

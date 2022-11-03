@@ -1,1 +1,0 @@
-export { renderWithTranstation } from './renderWithTranstation';
