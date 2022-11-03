@@ -16,7 +16,7 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:screenshot": "npx loki test",
-    "test:screenshot:ci": "brew install graphicsmagick && npx loki --requireReference --reactUri file:./storybook-static"
+    "test:screenshot:ci": "npx loki --requireReference --reactUri file:./storybook-static"
   },
   "keywords": [],
   "author": "",
