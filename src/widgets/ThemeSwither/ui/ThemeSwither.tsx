@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useTheme, Theme } from 'app/providers/ThemeProvider';
 import { cn } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button';

@@ -31,14 +31,17 @@ jobs:
       - name: Build project
         run: npm run build:prod
 
-      # Tests to verify compliance with the rules described in ESLint
+        # Tests to verify compliance with the rules described in ESLint
+        if: always()
       - name: Run linting for TS/TSX code
         run: npm run lint:ts
 
-      # Tests to verify compliance with the rules described in Stylelin
+        # Tests to verify compliance with the rules described in Stylelin
+        if: always()
       - name: Run linting for SCSS code
         run: npm run lint:scss
 
-      # Running Unit Tests
+        # Running Unit Tests
+        if: always()
       - name: Run init tests
         run: npm run test:unit

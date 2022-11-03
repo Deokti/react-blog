@@ -14,9 +14,6 @@ interface SidebarProps {
 export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
   const [toggle, setToggle] = useState(false);
 
-  console.log(theme);
-
-
   const onToggle = () => setToggle((toggle) => !toggle);
 
   return (
