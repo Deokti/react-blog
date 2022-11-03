@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  init:
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,7 +16,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      # Installing the NodeJS version
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      # Installing project dependencies
+      - name: Installing project dependencies
+        run: npm install
+
+      # We are building the project in a Build build for the future tested
+      - name: Build project
+        run: npm run build:prod
+
+      # Tests to verify compliance with the rules described in ESLint
+      - name: Run linting for TS/TSX code
+        run: npm run lint:ts
+
+      # Tests to verify compliance with the rules described in Stylelin
+      - name: Run linting for SCSS code
+        run: npm run lint:scss
+
+      # Running Unit Tests
+      - name: Run init tests
+        run: npm run test:unit
