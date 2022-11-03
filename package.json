@@ -6,16 +6,17 @@
   "scripts": {
     "start": "webpack serve",
     "dev": "webpack serve --env port=3000",
+    "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "build:dev": "webpack",
     "build:prod": "webpack --env mode=production",
+    "storybook:build": "build-storybook -c ./config/storybook",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
-    "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "storybook:build": "build-storybook -c ./config/storybook",
-    "test:screenshot": "npx loki test"
+    "test:screenshot": "npx loki test",
+    "test:screenshot:ci": "loki --requireReference --reactUri file:./storybook-static"
   },
   "keywords": [],
   "author": "",
