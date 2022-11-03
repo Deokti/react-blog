@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import path from 'path';
 import { Configuration } from 'webpack';
 import { storybookSvgDisabled } from '../lib/storybookSvgDisabled';
@@ -19,7 +20,9 @@ export default ({ config }: DefaultConfig) => {
   config.resolve?.extensions?.push(...extensions);
 
   // Disabling basic rules for SVG
-  config.module.rules = storybookSvgDisabled(config);
+  if (config.module) {
+    config.module.rules = storybookSvgDisabled(config);
+  }
 
   // Svg loader
   config.module?.rules?.push(SVGLoader);
