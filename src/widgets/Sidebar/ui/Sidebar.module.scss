@@ -12,11 +12,11 @@
   transform: rotate(180deg);
 }
 
-.light {
+.light_theme {
   border-right: 1px solid var(--bg-secondary);
 }
 
-.dark {
+.dark_theme {
   border-top: 1px solid var(--bg-primary);
   background-color: var(--bg-secondary);
 }
@@ -53,14 +53,21 @@
 }
 
 .appLink {
+  position: relative;
   margin-bottom: 14px;
   display: flex;
   align-items: center;
-  gap: 10px;
+}
+
+.itemIcon {
+  transition-property: width, height;
+  transition-duration: 0.2s;
 }
 
 .itemText {
+  position: absolute;
   margin: 0;
+  left: 35px;
   transition: opacity 0.2s linear 0.3s;
 }
 
@@ -72,10 +79,9 @@
   }
 
   .itemText {
-    position: absolute;
+    transition: opacity 0s linear 0s;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0s linear 0s;
   }
 
   .itemIcon {

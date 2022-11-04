@@ -1,7 +1,5 @@
 import { Suspense } from 'react';
 
-import '@fontsource/roboto';
-import './styles/index.scss';
 import { cn } from 'shared/lib/classNames';
 import { Header } from 'widgets/Header';
 import { Sidebar } from 'widgets/Sidebar';

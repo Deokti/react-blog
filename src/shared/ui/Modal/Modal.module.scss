@@ -1,0 +1,51 @@
+@import "../../../app/styles/themes/dark.theme";
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--modal-background-color);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 40%;
+  color: var(--primary-color);
+  transition-property: opacity, transform;
+  transition-duration: 0.4s;
+  transform: translateY(-40px);
+  opacity: 0;
+}
+
+.isOpen {
+  opacity: 1;
+  pointer-events: all;
+  z-index: var(--modal-z-index);
+
+  .content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.isClosing {
+  .content {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+}
