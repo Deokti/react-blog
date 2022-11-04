@@ -46,12 +46,11 @@ jobs:
       - name: Run init tests
         run: npm run test:unit
 
-      #   # Building the Storybook project
-      #   if: always()
-      # - name: Building Storybook
-      #   run: npm run storybook:build
+        # Building the Storybook project
+        if: always()
+      - name: Building Storybook
+        run: npm run storybook:build
 
-      #   # Running Storybook Tests
-      #   if: always()
-      # - name: Run Screenshot Test
-      #   run: npm run test:screenshot:ci
+        # Running Storybook Tests
+      - name: Run Screenshot Test
+        run: npm run test:screenshot:ci
