@@ -31,6 +31,14 @@ jobs:
       - name: Build project
         run: npm run build:prod
 
+        # Building the Storybook project
+      - name: Building Storybook
+        run: npm run storybook:build
+
+        # Running Storybook Tests
+      - name: Run Screenshot Test
+        run: npm run test:screenshot:ci
+
         # Tests to verify compliance with the rules described in ESLint
         if: always()
       - name: Run linting for TS/TSX code
@@ -45,12 +53,3 @@ jobs:
         if: always()
       - name: Run init tests
         run: npm run test:unit
-
-        # Building the Storybook project
-        if: always()
-      - name: Building Storybook
-        run: npm run storybook:build
-
-        # Running Storybook Tests
-      - name: Run Screenshot Test
-        run: npm run test:screenshot:ci
