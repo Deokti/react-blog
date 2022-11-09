@@ -10,19 +10,29 @@ export interface ModalProps {
   className?: string;
   isOpen?: boolean
   onClose?: () => void;
+  lazyLoad?: boolean;
 }
 
 export const Modal: FC<ModalProps> = (props) => {
-  const timer = useRef<ReturnType<typeof setTimeout>>(null);
-  const [isClosing, isSetClosing] = useState<boolean>(false);
-  const { theme } = useTheme();
-
   const {
     className,
     children,
     isOpen,
     onClose,
+    lazyLoad = false,
   } = props;
+
+  const timer = useRef<ReturnType<typeof setTimeout>>(null);
+  const [isClosing, isSetClosing] = useState<boolean>(false);
+  const [isMounted, setIsMounded] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounded(true);
+    }
+  }, [isOpen]);
+
+  const { theme } = useTheme();
 
   const closeHandler = useCallback(() => {
     if (onClose) {
@@ -60,6 +70,12 @@ export const Modal: FC<ModalProps> = (props) => {
     [styles.isOpen]: isOpen,
     [styles.isClosing]: isClosing,
   };
+
+  // Если lazyLoad === trye, а isMounted === false
+  // то есть компоненты не был вызван, возвращать Null
+  if (lazyLoad && !isMounted) {
+    return null;
+  }
 
   return (
     <Portal>

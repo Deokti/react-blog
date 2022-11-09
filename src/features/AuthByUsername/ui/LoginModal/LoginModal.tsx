@@ -15,7 +15,7 @@ export const LoginModal = (props: LoginModalProps) => {
   } = props;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className={className}>
+    <Modal isOpen={isOpen} onClose={onClose} className={className} lazyLoad>
       <LoginForm />
     </Modal>
   );
