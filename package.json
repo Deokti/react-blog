@@ -18,8 +18,7 @@
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:screenshot": "npx loki test",
     "test:screenshot:ok": "npx loki approve",
-    "test:screenshot:ci": "brew install graphicsmagick && npx loki --requireReference update --reactUri file:./storybook-static",
-    "prepare": "husky install"
+    "test:screenshot:ci": "brew install graphicsmagick && npx loki --requireReference update --reactUri file:./storybook-static"
   },
   "keywords": [],
   "author": "",
@@ -82,8 +81,7 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.0",
-    "husky": "^8.0.0"
+    "webpack-dev-server": "^4.11.0"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
