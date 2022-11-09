@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [master]
 
-concurrency:
-  group: linting-build-testing
-  cancel-in-progress: true
-
 jobs:
   linting:
     runs-on: ubuntu-latest
@@ -70,7 +66,6 @@ jobs:
       matrix:
         node: [16.x]
 
-    needs: [linting, init-test]
     steps:
       - uses: actions/checkout@v3
 
