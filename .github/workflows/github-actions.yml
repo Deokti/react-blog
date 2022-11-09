@@ -7,37 +7,20 @@ on:
     branches: [master]
 
 jobs:
-  init:
-    runs-on: macos-latest
+  linting:
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node: [16.x]
 
     steps:
       - uses: actions/checkout@v3
 
-      # Installing the NodeJS version
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-
-      # Installing project dependencies
-      - name: Installing project dependencies
-        run: npm install
-
-      # We are building the project in a Build build for the future tested
-      - name: Build project
-        run: npm run build:prod
-
-        # Building the Storybook project
-      - name: Building Storybook
-        run: npm run storybook:build
-
-        # Running Storybook Tests
-      - name: Run Screenshot Test
-        run: npm run test:screenshot:ci
+          node-version: ${{ matrix.node }}
 
         # Tests to verify compliance with the rules described in ESLint
         if: always()
@@ -49,7 +32,45 @@ jobs:
       - name: Run linting for SCSS code
         run: npm run lint:scss
 
-        # Running Unit Tests
-        if: always()
+  init-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      # Running Unit Tests
       - name: Run init tests
         run: npm run test:unit
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [16.x]
+
+    needs: [linting, init-test]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      # We are building the project in a Build build for the future tested
+      - name: Build project
+        run: npm run build:prod
+
+        # Building the Storybook project
+      - name: Building Storybook
+        run: npm run storybook:build
