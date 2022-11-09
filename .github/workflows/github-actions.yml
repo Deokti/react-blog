@@ -7,47 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
-    runs-on: macos-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
-    steps:
-      - uses: actions/checkout@v3
-
-      # Installing the NodeJS version
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      # Installing project dependencies
-      - name: Installing project dependencies
-        run: npm install
-
-  linting:
-    runs-on: macos-latest
-
-    steps:
-      # Tests to verify compliance with the rules described in ESLint
-      - name: Run linting for TS/TSX code
-        run: npm run lint:ts
-
-        # Tests to verify compliance with the rules described in Stylelin
-      - name: Run linting for SCSS code
-        run: npm run lint:scss
-
-  unit-test:
-    runs-on: macos-latest
-
-    steps:
-      # Running Unit Tests
-      - name: Run init tests
-        run: npm run test:unit
-
-  # init:
+  # build:
   #   runs-on: macos-latest
 
   #   strategy:
@@ -67,29 +27,69 @@ jobs:
   #     - name: Installing project dependencies
   #       run: npm install
 
-  #     # We are building the project in a Build build for the future tested
-  #     - name: Build project
-  #       run: npm run build:prod
+  # linting:
+  #   runs-on: macos-latest
 
-  #       # Building the Storybook project
-  #     - name: Building Storybook
-  #       run: npm run storybook:build
-
-  #       # Running Storybook Tests
-  #     - name: Run Screenshot Test
-  #       run: npm run test:screenshot:ci
-
-  #       # Tests to verify compliance with the rules described in ESLint
-  #       if: always()
+  #   steps:
+  #     # Tests to verify compliance with the rules described in ESLint
   #     - name: Run linting for TS/TSX code
   #       run: npm run lint:ts
 
   #       # Tests to verify compliance with the rules described in Stylelin
-  #       if: always()
   #     - name: Run linting for SCSS code
   #       run: npm run lint:scss
 
-  #       # Running Unit Tests
-  #       if: always()
+  # unit-test:
+  #   runs-on: macos-latest
+
+  #   steps:
+  #     # Running Unit Tests
   #     - name: Run init tests
   #       run: npm run test:unit
+
+  init:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Installing the NodeJS version
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Installing project dependencies
+      - name: Installing project dependencies
+        run: npm install
+
+      # We are building the project in a Build build for the future tested
+      - name: Build project
+        run: npm run build:prod
+
+        # Building the Storybook project
+      - name: Building Storybook
+        run: npm run storybook:build
+
+        # Running Storybook Tests
+      - name: Run Screenshot Test
+        run: npm run test:screenshot:ci
+
+        # Tests to verify compliance with the rules described in ESLint
+        if: always()
+      - name: Run linting for TS/TSX code
+        run: npm run lint:ts
+
+        # Tests to verify compliance with the rules described in Stylelin
+        if: always()
+      - name: Run linting for SCSS code
+        run: npm run lint:scss
+
+        # Running Unit Tests
+        if: always()
+      - name: Run init tests
+        run: npm run test:unit
