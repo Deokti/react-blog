@@ -22,6 +22,10 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      # Installing project dependencies
+      - name: Installing project dependencies
+        run: npm install
+
         # Tests to verify compliance with the rules described in ESLint
         if: always()
       - name: Run linting for TS/TSX code
@@ -47,6 +51,10 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      # Installing project dependencies
+      - name: Installing project dependencies
+        run: npm install
+
       # Running Unit Tests
       - name: Run init tests
         run: npm run test:unit
@@ -66,6 +74,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+
+      # Installing project dependencies
+      - name: Installing project dependencies
+        run: npm install
 
       # We are building the project in a Build build for the future tested
       - name: Build project
