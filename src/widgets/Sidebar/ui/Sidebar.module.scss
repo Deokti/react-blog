@@ -8,7 +8,7 @@
 }
 
 .icon {
-  fill: var(--primary-color);
+  fill: var(--font-color);
   transform: rotate(180deg);
 }
 
@@ -36,13 +36,13 @@
   transform: translateX(100%);
 }
 
-.button.light {
+.button.light_theme {
   border: 1px solid var(--bg-secondary);
   background-color: transparent;
   border-left: none;
 }
 
-.button.dark {
+.button.dark_theme {
   background-color: var(--bg-secondary);
 }
 

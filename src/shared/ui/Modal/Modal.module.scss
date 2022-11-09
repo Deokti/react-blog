@@ -21,11 +21,11 @@
 }
 
 .content {
-  background-color: var(--bg-secondary);
+  background-color: var(--modal-bg-color);
   padding: 20px;
   border-radius: 4px;
   max-width: 40%;
-  color: var(--primary-color);
+  color: var(--font-color);
   transition-property: opacity, transform;
   transition-duration: 0.4s;
   transform: translateY(-40px);

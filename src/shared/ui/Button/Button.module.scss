@@ -6,6 +6,13 @@
   }
 }
 
+.clear,
+.primary {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+
 .default {
   padding: 2px 5px;
 }
@@ -13,10 +20,7 @@
 .clear {
   padding: 0;
   margin: 0;
-  outline: none;
-  background-color: transparent;
-  border: none;
-  color: var(--primary-color);
+  color: var(--font-color);
 }
 
 .error {
@@ -30,4 +34,24 @@
     /* stylelint-disable-next-line scss/no-global-function-names */
     background-color: darken($color:  #d32f2f, $amount: 10);
   }
+}
+
+.primary {
+  padding: 9px 28px;
+  color: #fff;
+  background-color: var(--primary-color);
+
+  &:hover {
+    background-color: var(--button-primary-hover);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--button-primary-focus);
+  }
+}
+
+.fullWidth {
+  max-width: 100%;
+  width: 100%;
 }

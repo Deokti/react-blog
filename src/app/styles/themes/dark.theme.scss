@@ -1,5 +1,15 @@
 .dark_theme {
   --bg-primary: #0f0f0f;
   --bg-secondary: #212121;
-  --primary-color: #fff;
+  --font-color: #fff;
+  --primary-color: #165996;
+  --primary-color-rgb: 24, 144, 255;
+
+  // BUTTON
+  --button-primary-hover: #1062a4;
+  --button-primary-focus: rgb(16 98 164 / 50%);
+
+  // MODAL
+  --modal-bg-color: #212121;
+  --modal-border-color: #434343;
 }

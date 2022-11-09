@@ -1,5 +1,15 @@
 .light_theme {
   --bg-primary: #fff;
-  --bg-secondary: #d9dbe9;
-  --primary-color: #14142b;
+  --bg-secondary: #eaeaea;
+  --font-color: #14142b;
+  --primary-color: #40a9ff;
+  --primary-color-rgb: 64, 169, 255;
+
+  // BUTTON
+  --button-primary-hover: #3ea2f4;
+  --button-primary-focus: rgb(62 162 244 / 50%);
+
+  // MODAL
+  --modal-bg-color: #fff;
+  --modal-border-color: #d9d9d9;
 }
