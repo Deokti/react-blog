@@ -13,6 +13,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   fullWidth?: boolean;
   theme?: ButtonTheme;
+  disabled?: boolean;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
@@ -22,11 +23,13 @@ export const Button: FC<ButtonProps> = (props) => {
     theme = ButtonTheme.DEFAULT,
     fullWidth,
     type,
+    disabled = false,
     ...otherProps
   } = props;
 
   const mods: Record<string, boolean> = {
     [styles.fullWidth]: fullWidth,
+    [styles.disabled]: disabled,
   };
 
   return (
@@ -35,6 +38,7 @@ export const Button: FC<ButtonProps> = (props) => {
       {...otherProps}
       // eslint-disable-next-line react/button-has-type
       type={type}
+      disabled={disabled}
       className={cn(styles.button, mods, [styles[theme], className])}
     >
       {children}

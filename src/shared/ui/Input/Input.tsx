@@ -15,7 +15,7 @@ export enum InputTheme {
 
 export interface InputProps extends HTMLInputProps {
   className?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   theme?: InputTheme;
 }
@@ -33,7 +33,7 @@ export const Input = (props: InputProps) => {
 
   const handlerChangeValue = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
-      onChange(event.target.value);
+      onChange(event.target.value, event);
     }
   }, [onChange]);
 

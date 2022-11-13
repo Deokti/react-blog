@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import path from 'path';
-import { Configuration } from 'webpack';
+import { Configuration, DefinePlugin } from 'webpack';
 import { storybookSvgDisabled } from '../lib/storybookSvgDisabled';
 import { scssLoaders } from '../loaders/scssLoaders';
 import { svgLoader } from '../loaders/svgLoader';
@@ -24,11 +24,21 @@ export default ({ config }: DefaultConfig) => {
     config.module.rules = storybookSvgDisabled(config);
   }
 
+  if (config.resolve) {
+    config.resolve.modules = [srcPath, 'node_modules'];
+  }
+
   // Svg loader
   config.module?.rules?.push(SVGLoader);
 
   // SCSS loaders for scss module
   config.module?.rules?.push(scssLoader);
+
+  config.plugins?.push(
+    new DefinePlugin({
+      __IS_DEV__: JSON.stringify(true),
+    }),
+  );
 
   return config;
 };

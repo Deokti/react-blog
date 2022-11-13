@@ -1,0 +1,81 @@
+.text {
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    font-weight: 600;
+  }
+
+  .p,
+  .span {
+    font-weight: 400;
+  }
+
+  margin: 0;
+  padding: 0;
+}
+
+.text.default {
+  color: var(--font-color);
+}
+
+.text.error {
+  color: var(--font-error);
+}
+
+.sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-sm);
+}
+
+.m {
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+}
+
+.l {
+  font-size: var(--font-size-l);
+  line-height: var(--font-line-l);
+}
+
+.light {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semi_bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.extra_bold {
+  font-weight: 800;
+}
+
+.black {
+  font-weight: 900;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}

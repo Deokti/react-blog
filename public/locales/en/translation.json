@@ -7,8 +7,10 @@
   "Непредвиденная ошибка": "An unexpected error has occurred",
   "Перезагрузить страницу": "Reload Page",
   "Войти": "LOGIN",
+  "Выйти": "LOGOUT",
   "Кнопка войти": "ENTER",
   "Авторизоваться": "Log In",
   "Имя пользователя": "Username",
-  "Пароль": "Password"
+  "Пароль": "Password",
+  "AUTH_ERROR": "Invalid username or password"
 }

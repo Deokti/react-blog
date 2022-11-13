@@ -1,8 +1,10 @@
 /* eslint-disable max-len */
 import { Theme } from 'app/providers/ThemeProvider';
+import { getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { cn } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { LangSwither } from 'widgets/LangSwither/ui/LangSwither';
@@ -15,7 +17,9 @@ interface HeaderProps {
 
 export const Header = ({ className, theme = Theme.LIGHT }: HeaderProps) => {
   const [isAuth, setIsAuth] = useState(false);
+  const authData = useSelector(getUserAuthData);
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const onCloseModal = useCallback(() => {
     setIsAuth(false);
@@ -24,6 +28,27 @@ export const Header = ({ className, theme = Theme.LIGHT }: HeaderProps) => {
   const onOpenModal = useCallback(() => {
     setIsAuth(true);
   }, []);
+
+  const onLogout = useCallback(() => {
+    dispatch(userActions.logout());
+    setIsAuth(false);
+  }, [dispatch]);
+
+  if (authData) {
+    return (
+      <header className={cn(styles.header, [className, styles[theme]])}>
+        <LangSwither />
+
+        <Button
+          theme={ButtonTheme.CLEAR}
+          style={{ fontWeight: 600 }}
+          onClick={onLogout}
+        >
+          {t('Выйти')}
+        </Button>
+      </header>
+    );
+  }
 
   return (
     <header className={cn(styles.header, [className, styles[theme]])}>
