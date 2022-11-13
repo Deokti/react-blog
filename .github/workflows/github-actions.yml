@@ -7,72 +7,21 @@ on:
     branches: [master]
 
 jobs:
-  linting:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node: [16.x]
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      # Installing project dependencies
-      - name: Installing project dependencies
-        run: npm install
-
-        # Tests to verify compliance with the rules described in ESLint
-        if: always()
-      - name: Run linting for TS/TSX code
-        run: npm run lint:ts
-
-        # Tests to verify compliance with the rules described in Stylelin
-        if: always()
-      - name: Run linting for SCSS code
-        run: npm run lint:scss
-
-  init-test:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node: [16.x]
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      # Installing project dependencies
-      - name: Installing project dependencies
-        run: npm install
-
-      # Running Unit Tests
-      - name: Run init tests
-        run: npm run test:unit
-
-  screenshot-test:
+  init:
     runs-on: macos-latest
 
     strategy:
       matrix:
-        node: [16.x]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      # Installing the NodeJS version
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ matrix.node-version }}
 
       # Installing project dependencies
       - name: Installing project dependencies
@@ -86,6 +35,21 @@ jobs:
       - name: Building Storybook
         run: npm run storybook:build
 
-      # Running Storybook Tests
+        # Running Storybook Tests
       - name: Run Screenshot Test
         run: npm run test:screenshot:ci
+
+        # Tests to verify compliance with the rules described in ESLint
+        if: always()
+      - name: Run linting for TS/TSX code
+        run: npm run lint:ts
+
+        # Tests to verify compliance with the rules described in Stylelin
+        if: always()
+      - name: Run linting for SCSS code
+        run: npm run lint:scss
+
+        # Running Unit Tests
+        if: always()
+      - name: Run init tests
+        run: npm run test:unit
