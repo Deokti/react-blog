@@ -10,6 +10,7 @@ import {
   Text, TextAlight, TextSize, TextTheme, TextWeight,
 } from 'shared/ui/Text';
 import { ReduxStoreWithManager } from 'app/providers/StoreProvider/config/StoreSchema';
+import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginLoading } from '../../model/selectors/getLoginLoading/getLoginLoading';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginState';
@@ -24,21 +25,8 @@ const LoginForm = memo(() => {
   const password = useSelector(getLoginPassword);
   const isLoading = useSelector(getLoginLoading);
   const error = useSelector(getLoginError);
-  const store = useStore() as unknown as ReduxStoreWithManager;
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    store.reduceManager.add('login', loginReducer);
-    dispatch({ type: '@INIT LoginForm reducer' });
-
-    return () => {
-      store.reduceManager.remove('login');
-      dispatch({ type: '@DESTROY LoginForm reducer' });
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const onChangeUsername = (value: string) => {
     dispatch(loginActions.setUsername(value));
@@ -56,39 +44,41 @@ const LoginForm = memo(() => {
   }, [dispatch, password, username]);
 
   return (
-    <form className={styles.loginForm} onSubmit={onSubmitForm}>
-      <h2 className={styles.title}>{t('Авторизоваться')}</h2>
-      <Input
-        placeholder={t('Имя пользователя')}
-        value={username}
-        onChange={onChangeUsername}
-      />
-      <Input
-        placeholder={t('Пароль')}
-        className={styles.margin}
-        value={password}
-        onChange={onChangePassword}
-      />
-      <Button
-        theme={ButtonTheme.PRIMARY}
-        fullWidth
-        disabled={isLoading}
+    <DynamicModuleLoader name="login" reducer={loginReducer}>
+      <form className={styles.loginForm} onSubmit={onSubmitForm}>
+        <h2 className={styles.title}>{t('Авторизоваться')}</h2>
+        <Input
+          placeholder={t('Имя пользователя')}
+          value={username}
+          onChange={onChangeUsername}
+        />
+        <Input
+          placeholder={t('Пароль')}
+          className={styles.margin}
+          value={password}
+          onChange={onChangePassword}
+        />
+        <Button
+          theme={ButtonTheme.PRIMARY}
+          fullWidth
+          disabled={isLoading}
 
-      >
-        {t('Кнопка войти')}
-      </Button>
-      {error && (
-        <Text
-          theme={TextTheme.ERROR}
-          size={TextSize.SM}
-          align={TextAlight.CENTER}
-          weight={TextWeight.BOLD}
-          className={styles.error}
         >
-          {t('AUTH_ERROR')}
-        </Text>
-      )}
-    </form>
+          {t('Кнопка войти')}
+        </Button>
+        {error && (
+          <Text
+            theme={TextTheme.ERROR}
+            size={TextSize.SM}
+            align={TextAlight.CENTER}
+            weight={TextWeight.BOLD}
+            className={styles.error}
+          >
+            {t('AUTH_ERROR')}
+          </Text>
+        )}
+      </form>
+    </DynamicModuleLoader>
   );
 });
 
