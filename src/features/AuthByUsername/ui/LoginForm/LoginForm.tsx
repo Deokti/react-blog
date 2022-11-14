@@ -9,7 +9,7 @@ import { Input } from 'shared/ui/Input';
 import {
   Text, TextAlight, TextSize, TextTheme, TextWeight,
 } from 'shared/ui/Text';
-import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginLoading } from '../../model/selectors/getLoginLoading/getLoginLoading';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginState';
@@ -17,6 +17,10 @@ import { getLoginError } from '../../model/selectors/getLoginError/getLoginError
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 
 import styles from './LoginForm.module.scss';
+
+const initialReducer: ReducerList = {
+  login: loginReducer,
+};
 
 const LoginForm = memo(() => {
   const { t } = useTranslation();
@@ -43,7 +47,7 @@ const LoginForm = memo(() => {
   }, [dispatch, password, username]);
 
   return (
-    <DynamicModuleLoader name="login" reducer={loginReducer}>
+    <DynamicModuleLoader reducers={initialReducer} removeAfterUnmount>
       <form className={styles.loginForm} onSubmit={onSubmitForm}>
         <h2 className={styles.title}>{t('Авторизоваться')}</h2>
         <Input

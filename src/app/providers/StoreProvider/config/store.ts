@@ -3,8 +3,12 @@ import { userReducer } from 'entities/User';
 import { createReducerManager } from './reduceManager';
 import { StoreSchema } from './StoreSchema';
 
-export function createReduxStore(initialStore?: StoreSchema) {
+export function createReduxStore(
+  initialStore?: StoreSchema,
+  asyncReducers?: ReducersMapObject<StoreSchema>,
+) {
   const rootReducer: ReducersMapObject<StoreSchema> = {
+    ...asyncReducers,
     user: userReducer,
   };
 

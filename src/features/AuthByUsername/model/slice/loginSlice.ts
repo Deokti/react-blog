@@ -20,20 +20,20 @@ const loginSlice = createSlice({
       state.username = action.payload;
     },
   },
-  extraReducers: {
-    [loginByUsername.pending.type]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(loginByUsername.pending, (state) => {
       state.error = null;
       state.isLoading = true;
-    },
-    [loginByUsername.fulfilled.type]: (state) => {
+    });
+    builder.addCase(loginByUsername.fulfilled, (state) => {
       state.isLoading = false;
       state.password = '';
       state.username = '';
-    },
-    [loginByUsername.rejected.type]: (state, action) => {
+    });
+    builder.addCase(loginByUsername.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.error = action.payload;
-    },
+      state.error = payload as string;
+    });
   },
 });
 
