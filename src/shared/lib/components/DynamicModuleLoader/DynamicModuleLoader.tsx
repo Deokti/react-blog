@@ -10,10 +10,16 @@ interface DynamicModuleLoaderProps {
   name: KeyFromStoreSchema;
   reducer: Reducer;
   children: ReactNode;
+  removeAfterUnmount?: boolean;
 }
 
 export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
-  const { name, reducer, children } = props;
+  const {
+    name,
+    reducer,
+    children,
+    removeAfterUnmount,
+  } = props;
   const store = useStore() as unknown as ReduxStoreWithManager;
 
   const dispatch = useDispatch();
@@ -23,8 +29,10 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
     dispatch({ type: `@INIT ${name} reducer` });
 
     return () => {
-      store.reduceManager.remove(name);
-      dispatch({ type: `@DESTROY ${name} reducer` });
+      if (removeAfterUnmount) {
+        store.reduceManager.remove(name);
+        dispatch({ type: `@DESTROY ${name} reducer` });
+      }
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

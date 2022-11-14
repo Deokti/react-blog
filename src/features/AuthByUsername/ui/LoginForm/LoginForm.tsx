@@ -1,15 +1,14 @@
 import { loginActions, loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
 import {
-  ChangeEvent, memo, useCallback, useEffect,
+  ChangeEvent, memo, useCallback,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
 import {
   Text, TextAlight, TextSize, TextTheme, TextWeight,
 } from 'shared/ui/Text';
-import { ReduxStoreWithManager } from 'app/providers/StoreProvider/config/StoreSchema';
 import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginLoading } from '../../model/selectors/getLoginLoading/getLoginLoading';
