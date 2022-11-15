@@ -4,11 +4,10 @@ import { cn } from 'shared/lib/classNames';
 import { ThemeSwither } from 'widgets/ThemeSwither';
 import { AiOutlineRight } from 'react-icons/ai';
 import { Button, ButtonTheme } from 'shared/ui/Button';
-import { AppLink } from 'shared/ui/AppLink';
-import { useTranslation } from 'react-i18next';
 
-import { menuConfig } from 'app/providers/router/menuConfig';
+import { SidebarItemList } from 'widgets/Sidebar/config/sidebarConfig';
 import styles from './Sidebar.module.scss';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 interface SidebarProps {
   className?: string;
@@ -16,28 +15,22 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
-  const [toggle, setToggle] = useState(false);
-  const { t } = useTranslation();
+  const [collapsed, setCollapsed] = useState(false);
 
-  const onToggle = () => setToggle((toggle) => !toggle);
+  const onToggle = () => setCollapsed((toggle) => !toggle);
 
   return (
     <div
       data-testid="sidebar"
-      className={cn(styles.sidebar, { [styles.collapsed]: toggle }, [
+      className={cn(styles.sidebar, { [styles.collapsed]: collapsed }, [
         className,
         styles[theme],
       ])}
     >
 
       <ul className={styles.menu}>
-        {Object.values(menuConfig).map(({ Icon, name, path }) => (
-          <li className={styles.item} key={path}>
-            <AppLink to={path} className={styles.appLink}>
-              <Icon className={styles.itemIcon} size={25} />
-              <p className={styles.itemText}>{t(name)}</p>
-            </AppLink>
-          </li>
+        {SidebarItemList.map((item) => (
+          <SidebarItem item={item} collapsed={collapsed} />
         ))}
       </ul>
 

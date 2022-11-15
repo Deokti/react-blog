@@ -1,0 +1,35 @@
+.appLink {
+  position: relative;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.itemIcon {
+  transition-property: width, height;
+  transition-duration: 0.3s;
+}
+
+.itemText {
+  position: absolute;
+  margin: 0;
+  left: 35px;
+  transition: opacity 0.2s linear 0.3s;
+}
+
+.collapsed {
+  .icon {
+    transform: rotate(0);
+  }
+
+  .itemText {
+    transition: opacity 0s linear 0s;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .itemIcon {
+    height: 30px;
+    width: 30px;
+  }
+}
