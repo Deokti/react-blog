@@ -30,7 +30,7 @@ export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
 
       <ul className={styles.menu}>
         {SidebarItemList.map((item) => (
-          <SidebarItem item={item} collapsed={collapsed} />
+          <SidebarItem item={item} collapsed={collapsed} key={item.path} />
         ))}
       </ul>
 
