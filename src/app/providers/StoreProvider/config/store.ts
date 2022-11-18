@@ -9,6 +9,8 @@ export function createReduxStore(
 ) {
   const rootReducer: ReducersMapObject<StoreSchema> = {
     ...asyncReducers,
+
+    // Изначально подключённые редьюсеры
     user: userReducer,
   };
 

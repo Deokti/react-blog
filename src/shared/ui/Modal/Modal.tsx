@@ -1,6 +1,6 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import React, {
-  FC, useEffect, useRef, useState, useCallback,
+  FC, useEffect, useRef, useState, useCallback, ReactNode,
 } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { Portal } from 'shared/ui/Portal';
@@ -11,9 +11,10 @@ export interface ModalProps {
   isOpen?: boolean
   onClose?: () => void;
   lazyLoad?: boolean;
+  children: ReactNode;
 }
 
-export const Modal: FC<ModalProps> = (props) => {
+export const Modal = (props: ModalProps) => {
   const {
     className,
     children,

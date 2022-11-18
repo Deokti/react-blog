@@ -24,5 +24,4 @@ export const SidebarItemList: SidebarItemType[] = [
     path: RoutePath.profile,
     Icon: AiOutlineProfile,
   },
-
 ];

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { AppLanguages, flagConfig } from 'shared/config/flagConfig/flagConfig';
 import { cn } from 'shared/lib/classNames';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import styles from './LangSwither.module.scss';
 
@@ -9,7 +9,7 @@ interface LangSwitherProps {
   className?: string;
 }
 
-export const LangSwither = ({ className }: LangSwitherProps) => {
+export const LangSwither = memo(({ className }: LangSwitherProps) => {
   const { i18n } = useTranslation();
   const [toggle, setToggle] = useState(false);
 
@@ -50,4 +50,4 @@ export const LangSwither = ({ className }: LangSwitherProps) => {
       </div>
     </ClickAwayListener>
   );
-};
+});

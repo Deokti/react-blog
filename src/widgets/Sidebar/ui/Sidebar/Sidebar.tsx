@@ -1,5 +1,5 @@
 import { Theme } from 'app/providers/ThemeProvider';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { ThemeSwither } from 'widgets/ThemeSwither';
 import { AiOutlineRight } from 'react-icons/ai';
@@ -14,7 +14,7 @@ interface SidebarProps {
   theme?: Theme;
 }
 
-export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
+export const Sidebar = memo(({ className, theme = Theme.LIGHT }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const onToggle = () => setCollapsed((toggle) => !toggle);
@@ -45,4 +45,4 @@ export const Sidebar = ({ className, theme = Theme.LIGHT }: SidebarProps) => {
       </Button>
     </div>
   );
-};
+});

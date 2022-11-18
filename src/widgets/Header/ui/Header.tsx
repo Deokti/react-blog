@@ -2,7 +2,7 @@
 import { Theme } from 'app/providers/ThemeProvider';
 import { getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { cn } from 'shared/lib/classNames';
@@ -15,7 +15,7 @@ interface HeaderProps {
   theme?: Theme;
 }
 
-export const Header = ({ className, theme = Theme.LIGHT }: HeaderProps) => {
+export const Header = memo(({ className, theme = Theme.LIGHT }: HeaderProps) => {
   const [isAuth, setIsAuth] = useState(false);
   const authData = useSelector(getUserAuthData);
   const { t } = useTranslation();
@@ -65,4 +65,4 @@ export const Header = ({ className, theme = Theme.LIGHT }: HeaderProps) => {
       <LoginModal isOpen={isAuth} onClose={onCloseModal} />
     </header>
   );
-};
+});

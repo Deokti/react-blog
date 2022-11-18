@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { createElement, memo } from 'react';
 import { cn } from 'shared/lib/classNames';
 import styles from './Text.module.scss';
 
@@ -50,7 +50,7 @@ export interface TextProps {
   align?: TextAlight;
 }
 
-export const Text = (props: TextProps) => {
+export const Text = memo((props: TextProps) => {
   const {
     className,
     children,
@@ -79,4 +79,4 @@ export const Text = (props: TextProps) => {
     },
     children,
   );
-};
+});

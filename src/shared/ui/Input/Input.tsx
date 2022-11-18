@@ -2,6 +2,7 @@
 import {
   ChangeEvent,
   InputHTMLAttributes,
+  memo,
   useCallback,
 } from 'react';
 import { cn } from 'shared/lib/classNames';
@@ -20,7 +21,7 @@ export interface InputProps extends HTMLInputProps {
   theme?: InputTheme;
 }
 
-export const Input = (props: InputProps) => {
+export const Input = memo((props: InputProps) => {
   const {
     className,
     value,
@@ -48,4 +49,4 @@ export const Input = (props: InputProps) => {
       onChange={handlerChangeValue}
     />
   );
-};
+});

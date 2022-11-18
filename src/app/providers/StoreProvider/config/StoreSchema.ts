@@ -5,12 +5,16 @@ import {
   Reducer,
   StoreEnhancer,
 } from '@reduxjs/toolkit';
+import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
 
 export interface StoreSchema {
   user: UserSchema;
+
+  // Асинхронные редьюсеры
   login?: LoginSchema;
+  profile?: ProfileSchema;
 }
 
 export type KeyFromStoreSchema = keyof StoreSchema;
