@@ -1,6 +1,6 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import React, {
-  FC, useEffect, useRef, useState, useCallback, ReactNode,
+  useEffect, useRef, useState, useCallback, ReactNode,
 } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { Portal } from 'shared/ui/Portal';
