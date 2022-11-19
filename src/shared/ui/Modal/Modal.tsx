@@ -72,8 +72,7 @@ export const Modal = (props: ModalProps) => {
     [styles.isClosing]: isClosing,
   };
 
-  // Если lazyLoad === trye, а isMounted === false
-  // то есть компоненты не был вызван, возвращать Null
+  // Если lazyLoad === true и isMounted === false
   if (lazyLoad && !isMounted) {
     return null;
   }

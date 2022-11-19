@@ -31,7 +31,6 @@ export const Header = memo(({ className, theme = Theme.LIGHT }: HeaderProps) => 
 
   const onLogout = useCallback(() => {
     dispatch(userActions.logout());
-    setIsAuth(false);
   }, [dispatch]);
 
   if (authData) {

@@ -1,6 +1,6 @@
 import { loginActions, loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
 import {
-  ChangeEvent, memo, useCallback,
+  ChangeEvent, FC, memo, useCallback,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,11 @@ const initialReducer: ReducerList = {
   login: loginReducer,
 };
 
-const LoginForm = memo(() => {
+interface LoginFormProps {
+  onSuccess?: () => void;
+}
+
+const LoginForm: FC<LoginFormProps> = memo(({ onSuccess }: LoginFormProps) => {
   const { t } = useTranslation();
   const username = useSelector(getLoginUsername);
   const password = useSelector(getLoginPassword);
@@ -39,12 +43,16 @@ const LoginForm = memo(() => {
     dispatch(loginActions.setPassword(value));
   };
 
-  const onSubmitForm = useCallback((event: ChangeEvent<HTMLFormElement>) => {
+  const onSubmitForm = useCallback(async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // TODO: Временно
-    dispatch(loginByUsername({ username, password }) as any);
-  }, [dispatch, password, username]);
+    const result = await dispatch(loginByUsername({ username, password }) as any);
+
+    if (result?.meta?.requestStatus === 'fulfilled' && onSuccess) {
+      onSuccess();
+    }
+  }, [dispatch, onSuccess, password, username]);
 
   return (
     <DynamicModuleLoader reducers={initialReducer} removeAfterUnmount>

@@ -8,14 +8,14 @@ import '@fontsource/roboto';
 import 'app/styles/index.scss';
 
 render(
-  <StoreProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <StoreProvider>
       <ThemeContextProvider>
         <ErrorBoundary>
           <App />
         </ErrorBoundary>
       </ThemeContextProvider>
-    </BrowserRouter>
-  </StoreProvider>,
+    </StoreProvider>
+  </BrowserRouter>,
   document.getElementById('root'),
 );

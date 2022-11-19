@@ -5,9 +5,11 @@ import {
   Reducer,
   StoreEnhancer,
 } from '@reduxjs/toolkit';
+import { AxiosInstance } from 'axios';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
+import { NavigateOptions, To } from 'react-router-dom';
 
 export interface StoreSchema {
   user: UserSchema;
@@ -28,4 +30,16 @@ export interface ReduceManager {
 
 export interface ReduxStoreWithManager extends StoreEnhancer {
   reduceManager: ReduceManager;
+}
+
+export type MiddlewareThunkExtraNavigate = (to: To, options?: NavigateOptions) => void;
+
+export interface MiddlewareThunkExtra {
+  api: AxiosInstance;
+  navigate: MiddlewareThunkExtraNavigate;
+}
+
+export interface AsyncThunkExtraConfig<T = string> {
+  rejectValue: T;
+  extra: MiddlewareThunkExtra;
 }
