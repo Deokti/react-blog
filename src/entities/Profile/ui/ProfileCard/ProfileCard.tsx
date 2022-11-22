@@ -16,7 +16,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
   const { className } = props;
   const { t } = useTranslation('profile');
   const isLoading = useSelector(getProfileIsLoading);
-  const profile = useSelector(getProfileData);
+  // const profile = useSelector(getProfileData);
 
   if (isLoading) {
     return (
