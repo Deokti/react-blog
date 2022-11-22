@@ -2,10 +2,10 @@ import { getProfileData, getProfileIsLoading } from 'entities/Profile';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { cn } from 'shared/lib/classNames';
-import { Loader } from 'shared/ui/Loader';
 import {
   Text, TextSize, TextTag, TextWeight,
 } from 'shared/ui/Text';
+import { PageLoader } from 'widgets/PageLoader';
 import styles from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -18,9 +18,11 @@ export const ProfileCard = (props: ProfileCardProps) => {
   const isLoading = useSelector(getProfileIsLoading);
   const profile = useSelector(getProfileData);
 
-  // if (isLoading) {
-  //   return <Loader isCenter />;
-  // }
+  if (isLoading) {
+    return (
+      <PageLoader />
+    );
+  }
 
   return (
     <div className={cn(styles.card, [className])}>

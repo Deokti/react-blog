@@ -1,19 +1,23 @@
 import { cn } from 'shared/lib/classNames';
-import './Loader.scss';
+import styles from './Loader.module.scss';
+
+export enum LoaderAlign {
+  LEFT = 'left',
+  RIGHT = 'right',
+  CENTER = 'center',
+}
 
 interface LoaderProps {
   className?: string;
-  isCenter?: boolean;
+  align?: LoaderAlign;
 }
 
-export const Loader = ({ className, isCenter = false }: LoaderProps) => {
-  const mods = {
-    'loader-center': isCenter,
-  };
+export const Loader = (props: LoaderProps) => {
+  const { className, align = LoaderAlign.LEFT } = props;
 
   return (
-    <div className={cn('', mods)}>
-      <div className={cn('lds-ellipsis', [className])}>
+    <div className={cn(styles.wrapper, [styles[align]])}>
+      <div className={cn(styles.loader, [className])}>
         <div />
         <div />
         <div />

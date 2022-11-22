@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { Header } from 'widgets/Header';
 import { Sidebar } from 'widgets/Sidebar';
-import { Loader } from 'shared/ui/Loader';
+import { PageLoader } from 'widgets/PageLoader';
 import { AppRouter } from './providers/router/AppRouter';
 import { useTheme } from './providers/ThemeProvider';
 import 'shared/config/i18n/i18n';
@@ -13,7 +13,7 @@ export const App = () => {
 
   return (
     <div className={cn('app', [theme])}>
-      <Suspense fallback={<Loader isCenter />}>
+      <Suspense fallback={<PageLoader />}>
         <Header theme={theme} />
 
         <div className="app-container">

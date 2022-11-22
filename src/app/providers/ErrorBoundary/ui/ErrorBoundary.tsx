@@ -1,6 +1,6 @@
 import React, { ErrorInfo, ReactElement, Suspense } from 'react';
-import { Loader } from 'shared/ui/Loader';
 import { PageError } from 'widgets/PageError';
+import { PageLoader } from 'widgets/PageLoader';
 
 interface ErrorInfoProps {
   children: ReactElement;
@@ -31,7 +31,7 @@ export class ErrorBoundary
 
     if (hasError) {
       return (
-        <Suspense fallback={<Loader isCenter />}>
+        <Suspense fallback={<PageLoader />}>
           <PageError />
         </Suspense>
       );
