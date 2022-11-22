@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 import { cn } from 'shared/lib/classNames';
+import { Mods } from 'shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
 
 export enum ButtonTheme {
@@ -21,13 +22,13 @@ export const Button: FC<ButtonProps> = (props) => {
     className = '',
     children,
     theme = ButtonTheme.DEFAULT,
-    fullWidth,
+    fullWidth = false,
     type,
     disabled = false,
     ...otherProps
   } = props;
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [styles.fullWidth]: fullWidth,
     [styles.disabled]: disabled,
   };

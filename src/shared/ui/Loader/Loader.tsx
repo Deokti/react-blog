@@ -2,14 +2,23 @@ import { cn } from 'shared/lib/classNames';
 import './Loader.scss';
 
 interface LoaderProps {
-    className?: string;
+  className?: string;
+  isCenter?: boolean;
 }
 
-export const Loader = ({ className }: LoaderProps) => (
-  <div className={cn('lds-ellipsis', {}, [className])}>
-    <div />
-    <div />
-    <div />
-    <div />
-  </div>
-);
+export const Loader = ({ className, isCenter = false }: LoaderProps) => {
+  const mods = {
+    'loader-center': isCenter,
+  };
+
+  return (
+    <div className={cn('', mods)}>
+      <div className={cn('lds-ellipsis', [className])}>
+        <div />
+        <div />
+        <div />
+        <div />
+      </div>
+    </div>
+  );
+};

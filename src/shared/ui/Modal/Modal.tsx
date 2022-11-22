@@ -3,6 +3,7 @@ import React, {
   useEffect, useRef, useState, useCallback, ReactNode,
 } from 'react';
 import { cn } from 'shared/lib/classNames';
+import { Mods } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal';
 import styles from './Modal.module.scss';
 
@@ -18,12 +19,12 @@ export const Modal = (props: ModalProps) => {
   const {
     className,
     children,
-    isOpen,
+    isOpen = false,
     onClose,
     lazyLoad = false,
   } = props;
 
-  const timer = useRef<ReturnType<typeof setTimeout>>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isClosing, isSetClosing] = useState<boolean>(false);
   const [isMounted, setIsMounded] = useState<boolean>(false);
 
@@ -62,12 +63,14 @@ export const Modal = (props: ModalProps) => {
     }
 
     return () => {
-      clearTimeout(timer.current);
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
       document.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown, timer]);
 
-  const mods = {
+  const mods: Mods = {
     [styles.isOpen]: isOpen,
     [styles.isClosing]: isClosing,
   };

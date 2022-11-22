@@ -16,8 +16,6 @@ interface DynamicModuleLoaderProps {
   removeAfterUnmount?: boolean;
 }
 
-type ReducerListEntry = [KeyFromStoreSchema, Reducer];
-
 export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
   const {
     reducers,
@@ -29,21 +27,21 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    Object.entries(reducers).forEach(([key, reducer]: ReducerListEntry) => {
+    Object.entries(reducers).forEach(([key, reducer]) => {
       // eslint-disable-next-line no-console
       console.log(`[@INIT ${key} reducer]`);
 
-      store.reduceManager.add(key, reducer);
+      store.reduceManager.add(key as KeyFromStoreSchema, reducer);
       dispatch({ type: `@INIT ${key} reducer` });
     });
 
     return () => {
       if (removeAfterUnmount) {
-        Object.entries(reducers).forEach(([key]: ReducerListEntry) => {
+        Object.entries(reducers).forEach(([key]) => {
           // eslint-disable-next-line no-console
           console.log(`[@DESTROY ${key} reducer]`);
 
-          store.reduceManager.remove(key);
+          store.reduceManager.remove(key as KeyFromStoreSchema);
           dispatch({ type: `@DESTROY ${key} reducer` });
         });
       }

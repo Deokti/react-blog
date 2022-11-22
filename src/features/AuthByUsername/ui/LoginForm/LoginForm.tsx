@@ -10,12 +10,12 @@ import {
   Text, TextAlight, TextSize, TextTheme, TextWeight,
 } from 'shared/ui/Text';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginLoading } from '../../model/selectors/getLoginLoading/getLoginLoading';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginState';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
-
 import styles from './LoginForm.module.scss';
 
 const initialReducer: ReducerList = {
@@ -33,7 +33,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ onSuccess }: LoginFormProps) => {
   const isLoading = useSelector(getLoginLoading);
   const error = useSelector(getLoginError);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onChangeUsername = (value: string) => {
     dispatch(loginActions.setUsername(value));
@@ -46,8 +46,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ onSuccess }: LoginFormProps) => {
   const onSubmitForm = useCallback(async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // TODO: Временно
-    const result = await dispatch(loginByUsername({ username, password }) as any);
+    const result = await dispatch(loginByUsername({ username, password }));
 
     if (result?.meta?.requestStatus === 'fulfilled' && onSuccess) {
       onSuccess();

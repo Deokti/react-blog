@@ -1,14 +1,16 @@
-export type Mods = Record<string, boolean | string>;
+export type Mods = Record<string, boolean | string | undefined>;
 
-export const cn = (className: string, mods?: Mods | string[], additional?: string[]): string => {
-  const clx: string[] = [className];
+type Aditional = Array<string | undefined>;
+
+export const cn = (className: string, mods?: Mods | Aditional, additional?: Aditional): string => {
+  const clx: Aditional = [className];
 
   const isMods = typeof mods !== 'undefined';
   const isAdditional = typeof additional !== 'undefined';
 
   if (isMods) {
     const modsObject = Array.isArray(mods)
-      ? mods
+      ? mods.filter(Boolean)
       : Object.entries(mods)
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .filter(([_, value]) => value === true)
@@ -17,7 +19,10 @@ export const cn = (className: string, mods?: Mods | string[], additional?: strin
     clx.push(...modsObject);
   }
 
-  if (isAdditional) clx.push(...additional);
+  if (isAdditional) {
+    const filter = additional.filter(Boolean);
+    clx.push(...filter);
+  }
 
   return clx.join(' ');
 };

@@ -1,16 +1,11 @@
 import { $api } from 'shared/api/api';
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import {
+  CombinedState, configureStore, Reducer, ReducersMapObject,
+} from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
 import { To, NavigateOptions } from 'react-router-dom';
 import { createReducerManager } from './reduceManager';
-import { MiddlewareThunkExtra, MiddlewareThunkExtraNavigate, StoreSchema } from './StoreSchema';
-
-function extraArgument(navigate: MiddlewareThunkExtraNavigate): MiddlewareThunkExtra {
-  return {
-    api: $api,
-    navigate,
-  };
-}
+import { MiddlewareThunkExtra, StoreSchema } from './StoreSchema';
 
 export function createReduxStore(
   initialStore?: StoreSchema,
@@ -26,8 +21,13 @@ export function createReduxStore(
 
   const reducerManager = createReducerManager(rootReducer);
 
+  const extraArgument: MiddlewareThunkExtra = {
+    api: $api,
+    navigate,
+  };
+
   const store = configureStore({
-    reducer: reducerManager.reduce,
+    reducer: reducerManager.reduce as Reducer<CombinedState<StoreSchema>>,
     devTools: __IS_DEV__,
     preloadedState: initialStore,
 
@@ -35,7 +35,7 @@ export function createReduxStore(
     // для получения их из extra аргумента в createAsyncThunk
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       thunk: {
-        extraArgument: extraArgument(navigate),
+        extraArgument,
       },
     }),
   });
@@ -45,3 +45,5 @@ export function createReduxStore(
 
   return store;
 }
+
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

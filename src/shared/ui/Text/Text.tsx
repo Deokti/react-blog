@@ -54,8 +54,8 @@ export const Text = memo((props: TextProps) => {
   const {
     className,
     children,
-    weight,
-    size,
+    weight = TextWeight.REGULAR,
+    size = TextSize.M,
     theme = TextTheme.DEFAULT,
     tag = TextTag.P,
     align = TextAlight.LEFT,
@@ -64,9 +64,9 @@ export const Text = memo((props: TextProps) => {
   const additional = [
     className,
     styles[theme],
+    styles[align],
     styles[size],
     styles[weight],
-    styles[align],
   ];
 
   return createElement(

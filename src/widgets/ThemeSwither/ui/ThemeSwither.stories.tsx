@@ -15,9 +15,7 @@ const Template: ComponentStory<typeof ThemeSwither> = (args) => <ThemeSwither {.
 
 // LIGHT
 export const ThemeSwitherLight = Template.bind({});
-ThemeSwitherLight.args = {
-  theme: Theme.LIGHT,
-};
+ThemeSwitherLight.args = {};
 ThemeSwitherLight.decorators = [ThemeDecorator(Theme.LIGHT)];
 
 // DARK

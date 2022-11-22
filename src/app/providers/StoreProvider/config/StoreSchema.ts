@@ -36,7 +36,7 @@ export type MiddlewareThunkExtraNavigate = (to: To, options?: NavigateOptions) =
 
 export interface MiddlewareThunkExtra {
   api: AxiosInstance;
-  navigate: MiddlewareThunkExtraNavigate;
+  navigate?: MiddlewareThunkExtraNavigate;
 }
 
 export interface AsyncThunkExtraConfig<T = string> {
