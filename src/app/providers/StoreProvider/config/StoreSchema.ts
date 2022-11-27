@@ -21,7 +21,7 @@ export interface StoreSchema {
 
 export type KeyFromStoreSchema = keyof StoreSchema;
 
-export interface ReduceManager {
+export interface ReducerManager {
   getReducerMap: () => ReducersMapObject<StoreSchema>;
   reduce: (state: StoreSchema, action: AnyAction) => CombinedState<StoreSchema>;
   add: (key: KeyFromStoreSchema, reducer: Reducer) => void;
@@ -29,7 +29,7 @@ export interface ReduceManager {
 }
 
 export interface ReduxStoreWithManager extends StoreEnhancer {
-  reduceManager: ReduceManager;
+  reducerManager: ReducerManager;
 }
 
 export type MiddlewareThunkExtraNavigate = (to: To, options?: NavigateOptions) => void;
@@ -42,4 +42,5 @@ export interface MiddlewareThunkExtra {
 export interface AsyncThunkExtraConfig<T = string> {
   rejectValue: T;
   extra: MiddlewareThunkExtra;
+  state: StoreSchema;
 }

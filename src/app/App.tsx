@@ -8,7 +8,7 @@ import { AppRouter } from './providers/router/AppRouter';
 import { useTheme } from './providers/ThemeProvider';
 import 'shared/config/i18n/i18n';
 
-export const App = () => {
+const App = () => {
   const { theme } = useTheme();
 
   return (
@@ -24,3 +24,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default App;

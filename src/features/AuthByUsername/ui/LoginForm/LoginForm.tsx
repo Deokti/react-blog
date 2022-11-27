@@ -9,7 +9,7 @@ import { Input } from 'shared/ui/Input';
 import {
   Text, TextAlight, TextSize, TextTheme, TextWeight,
 } from 'shared/ui/Text';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginLoading } from '../../model/selectors/getLoginLoading/getLoginLoading';
@@ -18,7 +18,7 @@ import { getLoginError } from '../../model/selectors/getLoginError/getLoginError
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import styles from './LoginForm.module.scss';
 
-const initialReducer: ReducerList = {
+const initialReducer: ReducersList = {
   login: loginReducer,
 };
 
@@ -54,7 +54,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ onSuccess }: LoginFormProps) => {
   }, [dispatch, onSuccess, password, username]);
 
   return (
-    <DynamicModuleLoader reducers={initialReducer} removeAfterUnmount>
+    <DynamicModuleLoader reducers={initialReducer}>
       <form className={styles.loginForm} onSubmit={onSubmitForm}>
         <h2 className={styles.title}>{t('Авторизоваться')}</h2>
         <Input

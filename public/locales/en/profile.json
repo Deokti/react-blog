@@ -1,4 +1,12 @@
 {
   "Профиль": "Profile",
-  "Изменить данные профиля": "Update your photo and personal details"
+  "Изменить данные профиля": "Update your photo and personal details",
+  "Имя пользователя": "Username",
+  "Имя": "Name",
+  "Фамилия": "Surname",
+  "Ваша фотография": "Your photo",
+  "Это будет отображено в вашем профиле": "This will be displayed in your profile",
+  "Возраст": "Age",
+  "Валюта": "Currecy",
+  "Страна": "Country"
 }

@@ -1,1 +1,1 @@
-export { DynamicModuleLoader, ReducerList } from './DynamicModuleLoader';
+export { DynamicModuleLoader, ReducersList } from './DynamicModuleLoader';

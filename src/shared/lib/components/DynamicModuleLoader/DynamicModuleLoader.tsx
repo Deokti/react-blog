@@ -1,53 +1,45 @@
+import { FC, useEffect } from 'react';
+import { useDispatch, useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
 import {
   KeyFromStoreSchema,
   ReduxStoreWithManager,
 } from 'app/providers/StoreProvider/config/StoreSchema';
-import { ReactNode, useEffect } from 'react';
-import { useStore, useDispatch } from 'react-redux';
 
-export type ReducerList = {
+export type ReducersList = {
   [name in KeyFromStoreSchema]?: Reducer;
 }
 
 interface DynamicModuleLoaderProps {
-  reducers: ReducerList;
-  children: ReactNode;
+  reducers: ReducersList;
   removeAfterUnmount?: boolean;
 }
 
-export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
+export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
   const {
-    reducers,
     children,
+    reducers,
     removeAfterUnmount,
   } = props;
-  const store = useStore() as unknown as ReduxStoreWithManager;
 
+  const store = useStore() as unknown as ReduxStoreWithManager;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    Object.entries(reducers).forEach(([key, reducer]) => {
-      // eslint-disable-next-line no-console
-      console.log(`[@INIT ${key} reducer]`);
-
-      store.reduceManager.add(key as KeyFromStoreSchema, reducer);
-      dispatch({ type: `@INIT ${key} reducer` });
+    Object.entries(reducers).forEach(([name, reducer]) => {
+      store.reducerManager.add(name as KeyFromStoreSchema, reducer);
+      dispatch({ type: `@INIT ${name} reducer` });
     });
 
     return () => {
       if (removeAfterUnmount) {
-        Object.entries(reducers).forEach(([key]) => {
-          // eslint-disable-next-line no-console
-          console.log(`[@DESTROY ${key} reducer]`);
-
-          store.reduceManager.remove(key as KeyFromStoreSchema);
-          dispatch({ type: `@DESTROY ${key} reducer` });
+        Object.entries(reducers).forEach(([name]) => {
+          store.reducerManager.remove(name as KeyFromStoreSchema);
+          dispatch({ type: `@DESTROY ${name} reducer` });
         });
       }
     };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   return (

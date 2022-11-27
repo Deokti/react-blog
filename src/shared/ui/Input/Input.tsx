@@ -8,7 +8,7 @@ import {
 import { cn } from 'shared/lib/classNames';
 import styles from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'size'>;
 
 export enum InputTheme {
   DEFAULT = 'default',
@@ -17,7 +17,7 @@ export enum InputTheme {
 export interface InputProps extends HTMLInputProps {
   className?: string;
   onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
+  value?: string | number;
   theme?: InputTheme;
 }
 
@@ -38,12 +38,17 @@ export const Input = memo((props: InputProps) => {
     }
   }, [onChange]);
 
+  const additional = [
+    styles[theme],
+    className,
+  ];
+
   return (
     <input
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...otherProps}
       placeholder={placeholder}
-      className={cn(styles.input, [className, styles[theme]])}
+      className={cn(styles.input, additional)}
       type={type}
       value={value}
       onChange={handlerChangeValue}
