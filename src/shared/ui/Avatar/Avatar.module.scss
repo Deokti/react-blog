@@ -1,0 +1,44 @@
+.avatarRoot,
+.avatarWithChildren {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+  overflow: hidden;
+  user-select: none;
+}
+
+.avatarWithChildren {
+  background-color: rgb(189 189 189);
+  color: rgb(255 255 255);
+  font-size: 1.35rem;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  // Обрабатывать неквадратное изображение. Свойство не поддерживается IE11.
+  object-fit: cover;
+
+  // Скрыть alt текст.
+  color: transparent;
+
+  // Скрыть значок разбитого изображения. Работает только в Chrome.
+  text-indent: 10000;
+}
+
+.circular {
+  border-radius: 50%;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+.square {
+  border-radius: 0;
+}
