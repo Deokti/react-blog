@@ -1,8 +1,11 @@
 import { Profile } from 'entities/Profile';
 import { useTranslation } from 'react-i18next';
+import { Country, Currency } from 'shared/consts/common';
 import { cn } from 'shared/lib/classNames';
+import { Avatar } from 'shared/ui/Avatar';
 import { Input } from 'shared/ui/Input';
 import { Loader } from 'shared/ui/Loader';
+import { Select } from 'shared/ui/Select';
 import {
   Text, TextSize, TextTag, TextTheme, TextWeight,
 } from 'shared/ui/Text';
@@ -20,6 +23,14 @@ export interface ProfileCardProps {
   onChangeAvatar?: (username: string) => void
   onChangeAge?: (username: string) => void
 }
+
+const countryOptions = Object
+  .entries(Country)
+  .map((val) => ({ value: val[0], label: val[1] }));
+
+const currencyOptions = Object
+  .entries(Currency)
+  .map((val) => ({ value: val[0], label: val[1] }));
 
 export const ProfileCard = (props: ProfileCardProps) => {
   const {
@@ -62,6 +73,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
   return (
     <div className={cn(styles.card, [className])}>
       <div className={styles.form}>
+        <div className={styles.item}>
+          <Avatar src={data?.avatar} className="ml-auto" />
+        </div>
         <div className={styles.item}>
           <Text
             tag={TextTag.H2}
@@ -158,7 +172,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
           />
         </div>
 
-        {/* <div className={styles.item}>
+        <div className={styles.item}>
           <Text
             tag={TextTag.H2}
             size={TextSize.M}
@@ -167,6 +181,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
             {t('Валюта')}
 
           </Text>
+
+          <Select
+            options={currencyOptions}
+            value={data?.currency}
+            className={styles.input}
+            disabled
+          />
         </div>
 
         <div className={styles.item}>
@@ -176,9 +197,14 @@ export const ProfileCard = (props: ProfileCardProps) => {
             weight={TextWeight.BOLD}
           >
             {t('Страна')}
-
           </Text>
-        </div> */}
+          <Select
+            options={countryOptions}
+            value={data?.country}
+            className={styles.input}
+            disabled
+          />
+        </div>
       </div>
     </div>
   );
