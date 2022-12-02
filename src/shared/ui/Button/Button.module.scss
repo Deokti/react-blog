@@ -31,8 +31,12 @@
   border: none;
 
   &:hover {
-    /* stylelint-disable-next-line scss/no-global-function-names */
-    background-color: darken($color:  #d32f2f, $amount: 10);
+    background-color: var(--button-error-hover);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--button-error-focus);
   }
 }
 

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { cn } from 'shared/lib/classNames';
 import { Input } from 'shared/ui/Input';
 import {
-  Text, TextSize, TextTag, TextWeight,
+  Text, TextSize, TextTag, TextTheme, TextWeight,
 } from 'shared/ui/Text';
 import { PageLoader } from 'widgets/PageLoader';
 import styles from './ProfileCard.module.scss';
@@ -12,10 +12,28 @@ interface ProfileCardProps {
   className?: string;
   data?: Profile;
   isLoading?: boolean;
+  error?: string;
+  readonly?: boolean;
+  onChangeUsername?: (username: string) => void
+  onChangeFirstname?: (username: string) => void
+  onChangeLastname?: (username: string) => void
+  onChangeAvatar?: (username: string) => void
+  onChangeAge?: (username: string) => void
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
-  const { className, data, isLoading } = props;
+  const {
+    className,
+    data,
+    isLoading,
+    error,
+    readonly = true,
+    onChangeUsername,
+    onChangeAge,
+    onChangeAvatar,
+    onChangeFirstname,
+    onChangeLastname,
+  } = props;
   const { t } = useTranslation('profile');
 
   if (isLoading) {
@@ -24,27 +42,21 @@ export const ProfileCard = (props: ProfileCardProps) => {
     );
   }
 
+  if (error) {
+    return (
+      <Text
+        size={TextSize.L}
+        weight={TextWeight.BLACK}
+        theme={TextTheme.ERROR}
+      >
+        {t(error)}
+
+      </Text>
+    );
+  }
+
   return (
     <div className={cn(styles.card, [className])}>
-      <div className={styles.gradient} />
-
-      <header className={styles.header}>
-        <div>
-          <img src={data?.avatar} alt="" className={styles.img} />
-        </div>
-        <div className={styles.detailedText}>
-          <Text weight={TextWeight.BOLD} size={TextSize.L} tag={TextTag.H1}>
-            {t('Профиль')}
-          </Text>
-          <Text
-            weight={TextWeight.LIGHT}
-            size={TextSize.SM}
-          >
-            {t('Изменить данные профиля')}
-          </Text>
-        </div>
-      </header>
-
       <div className={styles.form}>
         <div className={styles.item}>
           <Text
@@ -55,7 +67,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
           >
             {t('Имя пользователя')}
           </Text>
-          <Input className={styles.input} value={data?.username} />
+          <Input
+            className={styles.input}
+            value={data?.username}
+            disabled={readonly}
+            onChange={onChangeUsername}
+          />
         </div>
 
         <div className={styles.item}>
@@ -68,7 +85,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
             {t('Имя')}
 
           </Text>
-          <Input className={styles.input} value={data?.first} />
+          <Input
+            className={styles.input}
+            value={data?.firstname}
+            disabled={readonly}
+            onChange={onChangeFirstname}
+          />
         </div>
 
         <div className={styles.item}>
@@ -81,10 +103,15 @@ export const ProfileCard = (props: ProfileCardProps) => {
             {t('Фамилия')}
 
           </Text>
-          <Input className={styles.input} value={data?.lastname} />
+          <Input
+            className={styles.input}
+            value={data?.lastname}
+            disabled={readonly}
+            onChange={onChangeLastname}
+          />
         </div>
 
-        {/* <div className={styles.item}>
+        <div className={styles.item}>
           <div>
             <Text
               tag={TextTag.H2}
@@ -101,8 +128,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
               {t('Это будет отображено в вашем профиле')}
             </Text>
           </div>
-          <Input />
-        </div> */}
+          <Input
+            className={styles.input}
+            value={data?.avatar}
+            disabled={readonly}
+            onChange={onChangeAvatar}
+          />
+        </div>
 
         <div className={styles.item}>
           <Text
@@ -114,7 +146,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
             {t('Возраст')}
 
           </Text>
-          <Input className={styles.input} value={data?.age} />
+          <Input
+            className={styles.input}
+            value={data?.age}
+            disabled={readonly}
+            onChange={onChangeAge}
+          />
         </div>
 
         {/* <div className={styles.item}>
@@ -142,12 +179,3 @@ export const ProfileCard = (props: ProfileCardProps) => {
     </div>
   );
 };
-
-// first: string;
-// lastname: string;
-// age: number;
-// currency: Currency;
-// country: Country;
-// city: string;
-// username: string;
-// avatar: string;

@@ -19,6 +19,7 @@ export interface InputProps extends HTMLInputProps {
   onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
   value?: string | number;
   theme?: InputTheme;
+  disabled?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -27,6 +28,7 @@ export const Input = memo((props: InputProps) => {
     value,
     placeholder,
     theme = InputTheme.DEFAULT,
+    disabled = false,
     type,
     onChange,
     ...otherProps
@@ -38,6 +40,10 @@ export const Input = memo((props: InputProps) => {
     }
   }, [onChange]);
 
+  const mods = {
+    [styles.disabled]: disabled,
+  };
+
   const additional = [
     styles[theme],
     className,
@@ -48,8 +54,9 @@ export const Input = memo((props: InputProps) => {
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...otherProps}
       placeholder={placeholder}
-      className={cn(styles.input, additional)}
+      className={cn(styles.input, mods, additional)}
       type={type}
+      disabled={disabled}
       value={value}
       onChange={handlerChangeValue}
     />

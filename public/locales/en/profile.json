@@ -8,5 +8,8 @@
   "Это будет отображено в вашем профиле": "This will be displayed in your profile",
   "Возраст": "Age",
   "Валюта": "Currecy",
-  "Страна": "Country"
+  "Страна": "Country",
+  "Редактировать": "Edit",
+  "Сохранить": "Save",
+  "Отменить": "Cancel"
 }
