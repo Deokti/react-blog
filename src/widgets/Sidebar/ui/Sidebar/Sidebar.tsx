@@ -1,11 +1,12 @@
 import { Theme } from 'app/providers/ThemeProvider';
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { cn } from 'shared/lib/classNames';
 import { ThemeSwither } from 'widgets/ThemeSwither';
 import { AiOutlineRight } from 'react-icons/ai';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 
 import { SidebarItemList } from 'widgets/Sidebar/config/sidebarConfig';
+import { useSidebarCollapsed } from 'app/providers/SidebarProvider';
 import styles from './Sidebar.module.scss';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 
@@ -15,9 +16,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = memo(({ className, theme = Theme.LIGHT }: SidebarProps) => {
-  const [collapsed, setCollapsed] = useState(false);
-
-  const onToggle = () => setCollapsed((toggle) => !toggle);
+  const { collapsed, toggleCollapsed } = useSidebarCollapsed();
 
   return (
     <div
@@ -37,7 +36,7 @@ export const Sidebar = memo(({ className, theme = Theme.LIGHT }: SidebarProps) =
       <ThemeSwither className={styles.themeSwither} />
       <Button
         className={cn(styles.button, [styles[theme]])}
-        onClick={onToggle}
+        onClick={toggleCollapsed}
         data-testid="on-toggle"
         theme={ButtonTheme.CLEAR}
       >

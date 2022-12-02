@@ -44,14 +44,16 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
   if (error) {
     return (
-      <Text
-        size={TextSize.L}
-        weight={TextWeight.BLACK}
-        theme={TextTheme.ERROR}
-      >
-        {t(error)}
+      <div className={styles.card}>
+        <Text
+          size={TextSize.L}
+          weight={TextWeight.BLACK}
+          theme={TextTheme.ERROR}
+        >
+          {t(error)}
 
-      </Text>
+        </Text>
+      </div>
     );
   }
 
