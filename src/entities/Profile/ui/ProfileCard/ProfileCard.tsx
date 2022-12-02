@@ -2,10 +2,10 @@ import { Profile } from 'entities/Profile';
 import { useTranslation } from 'react-i18next';
 import { cn } from 'shared/lib/classNames';
 import { Input } from 'shared/ui/Input';
+import { Loader } from 'shared/ui/Loader';
 import {
   Text, TextSize, TextTag, TextTheme, TextWeight,
 } from 'shared/ui/Text';
-import { PageLoader } from 'widgets/PageLoader';
 import styles from './ProfileCard.module.scss';
 
 export interface ProfileCardProps {
@@ -38,7 +38,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
   if (isLoading) {
     return (
-      <PageLoader />
+      <div className={styles.card}>
+        <Loader />
+      </div>
     );
   }
 

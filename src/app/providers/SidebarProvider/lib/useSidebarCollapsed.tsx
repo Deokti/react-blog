@@ -11,6 +11,7 @@ export const useSidebarCollapsed = (): UseThemeResult => {
 
   const toggleCollapsed = () => {
     const newCollapsed = !collapsed;
+
     if (setCollapsed) {
       setCollapsed(newCollapsed);
     }
