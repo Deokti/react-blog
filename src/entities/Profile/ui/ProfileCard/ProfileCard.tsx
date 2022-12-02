@@ -8,7 +8,7 @@ import {
 import { PageLoader } from 'widgets/PageLoader';
 import styles from './ProfileCard.module.scss';
 
-interface ProfileCardProps {
+export interface ProfileCardProps {
   className?: string;
   data?: Profile;
   isLoading?: boolean;
