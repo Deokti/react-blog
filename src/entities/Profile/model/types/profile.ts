@@ -5,6 +5,7 @@ export enum ValidateProfileErrors {
   SERVER_ERROR = 'SERVER_ERROR',
   INCORRECT_USER_DATA = 'INCORRECT_USER_DATA',
   INCORRECT_USERNAME = 'INCORRECT_USERNAME',
+  INCORRECT_AGE = 'INCORRECT_AGE',
 }
 
 export interface Profile {
