@@ -11,5 +11,9 @@
   "Страна": "Country",
   "Редактировать": "Edit",
   "Сохранить": "Save",
-  "Отменить": "Cancel"
+  "Отменить": "Cancel",
+  "NO_DATA": "No data available",
+  "SERVER_ERROR": "Server error when loading or saving",
+  "INCORRECT_USER_DATA": "Incorrect First or Last Name",
+  "INCORRECT_USERNAME": "Invalid User Name"
 }

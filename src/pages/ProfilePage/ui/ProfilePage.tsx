@@ -1,3 +1,4 @@
+import { toastError } from 'app/providers/ToastProvider';
 import {
   profileReducer,
   fetchProfileData,
@@ -7,8 +8,10 @@ import {
   getProfileReadonly,
   profileActions,
   getProfileForm,
+  getProfileValidateErrors,
 } from 'entities/Profile';
 import { useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { cn } from 'shared/lib/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
@@ -26,13 +29,21 @@ interface ProfilePageProps {
 
 const ProfilePage = (props: ProfilePageProps) => {
   const { className } = props;
+  const { t } = useTranslation('profile');
 
   const data = useSelector(getProfileForm);
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
+  const validateErrors = useSelector(getProfileValidateErrors);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (validateErrors && validateErrors.length > 0) {
+      validateErrors.forEach((errorText) => toastError(t(errorText)));
+    }
+  }, [t, validateErrors]);
 
   useEffect(() => {
     dispatch(fetchProfileData());
@@ -64,6 +75,7 @@ const ProfilePage = (props: ProfilePageProps) => {
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div className={cn(styles.profilepage, [className])}>
         <ProfilePageHeader className={styles.header} />
+
         <ProfileCard
           data={data}
           isLoading={isLoading}

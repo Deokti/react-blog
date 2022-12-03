@@ -9,6 +9,7 @@ const initialState: ProfileSchema = {
   error: null,
   isLoading: false,
   readonly: true,
+  validateErrors: [],
 };
 
 const profileSlice = createSlice({
@@ -52,16 +53,17 @@ const profileSlice = createSlice({
     builder.addCase(updateProfileData.pending, (state) => {
       state.error = null;
       state.isLoading = true;
-      state.readonly = true;
+      state.validateErrors = [];
     });
     builder.addCase(updateProfileData.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.data = payload;
       state.form = payload;
+      state.readonly = true;
     });
     builder.addCase(updateProfileData.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.error = payload as string;
+      state.validateErrors = payload;
     });
   },
 });

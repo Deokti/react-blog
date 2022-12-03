@@ -1,6 +1,5 @@
 import {
   CSSProperties,
-  HTMLAttributes,
   ReactNode,
   useMemo,
 } from 'react';
@@ -14,7 +13,7 @@ export enum AvatarVariant {
   SQUARE = 'square'
 }
 
-interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
+interface AvatarProps {
   className?: string;
   src?: string;
   size?: number;
@@ -29,7 +28,6 @@ export const Avatar = (props: AvatarProps) => {
     size = 50,
     variant = AvatarVariant.CIRCULAR,
     children,
-    ...otherProps
   } = props;
 
   const style = useMemo<CSSProperties>(() => ({
@@ -51,8 +49,7 @@ export const Avatar = (props: AvatarProps) => {
   }
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <div {...otherProps} className={cn(styles.avatarRoot, aditional)} style={style}>
+    <div className={cn(styles.avatarRoot, aditional)} style={style}>
       {src
         ? <img src={src} alt="" className={styles.avatarImg} />
         : <img src={notAvatar} alt="not-avatar" className={styles.avatarImg} />}

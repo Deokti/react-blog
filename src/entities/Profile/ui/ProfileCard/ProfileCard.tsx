@@ -2,7 +2,7 @@ import { Profile } from 'entities/Profile';
 import { useTranslation } from 'react-i18next';
 import { Country, Currency } from 'shared/consts/common';
 import { cn } from 'shared/lib/classNames';
-import { Avatar } from 'shared/ui/Avatar';
+import { Avatar, AvatarVariant } from 'shared/ui/Avatar';
 import { Input } from 'shared/ui/Input';
 import { Loader } from 'shared/ui/Loader';
 import { Select } from 'shared/ui/Select';
@@ -74,7 +74,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
     <div className={cn(styles.card, [className])}>
       <div className={styles.form}>
         <div className={styles.item}>
-          <Avatar src={data?.avatar} className="ml-auto" />
+          <Avatar
+            src={data?.avatar}
+            className="m-auto"
+            size={150}
+            variant={AvatarVariant.ROUNDED}
+          />
         </div>
         <div className={styles.item}>
           <Text
