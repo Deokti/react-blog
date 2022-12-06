@@ -9,6 +9,9 @@
   background-color: var(--modal-background-color);
   opacity: 0;
   pointer-events: none;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 
 .overlay {

@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { PageLoader } from 'widgets/PageLoader';
 import { LoginFormLazy } from '../LoginForm/LoginForm.async';
 
 interface LoginModalProps {
@@ -18,7 +17,7 @@ export const LoginModal = (props: LoginModalProps) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={className} lazyLoad>
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback="">
         <LoginFormLazy onSuccess={onClose} />
       </Suspense>
     </Modal>

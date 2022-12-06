@@ -6,6 +6,7 @@ export interface SidebarItemType {
   name: string;
   path: string;
   Icon: IconType;
+  authOnly?: boolean;
 }
 
 export const SidebarItemList: SidebarItemType[] = [
@@ -23,5 +24,6 @@ export const SidebarItemList: SidebarItemType[] = [
     name: 'Профиль',
     path: RoutePath.profile,
     Icon: AiOutlineProfile,
+    authOnly: true,
   },
 ];

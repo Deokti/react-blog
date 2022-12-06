@@ -3,9 +3,7 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/consts/localStorage';
 
 const baseURL = 'http://localhost:8000';
 
-const $api = axios.create({
-  baseURL,
-});
+const $api = axios.create({ baseURL });
 
 $api.interceptors.request.use((config) => {
   const token = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
