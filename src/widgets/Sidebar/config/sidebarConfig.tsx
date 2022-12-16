@@ -1,5 +1,10 @@
 import { IconType } from 'react-icons';
-import { AiOutlineFileSearch, AiOutlineHome, AiOutlineProfile } from 'react-icons/ai';
+import {
+  AiOutlineFileSearch,
+  AiOutlineHome,
+  AiOutlineProfile,
+  AiOutlineUser,
+} from 'react-icons/ai';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 export interface SidebarItemType {
@@ -23,6 +28,12 @@ export const SidebarItemList: SidebarItemType[] = [
   {
     name: 'Профиль',
     path: RoutePath.profile,
+    Icon: AiOutlineUser,
+    authOnly: true,
+  },
+  {
+    name: 'Статьи',
+    path: RoutePath.articles,
     Icon: AiOutlineProfile,
     authOnly: true,
   },

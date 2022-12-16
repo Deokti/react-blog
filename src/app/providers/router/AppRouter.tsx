@@ -15,7 +15,9 @@ export const AppRouter = () => (
           element={authOnly
             ? (
               <RequireAuthRoute>
-                {element as JSX.Element}
+                <div className="app-inner">
+                  {element as JSX.Element}
+                </div>
               </RequireAuthRoute>
             )
             : <div className="app-inner">{element}</div>}

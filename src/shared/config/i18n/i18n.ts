@@ -10,7 +10,7 @@ i18n
   .init({
     fallbackLng: 'ru',
     debug: __IS_DEV__,
-
+    ignoreJSONStructure: true,
     interpolation: {
       escapeValue: false, // not needed for react!!
     },

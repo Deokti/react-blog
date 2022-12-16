@@ -1,9 +1,13 @@
 export type Mods = Record<string, boolean | string | undefined>;
 
-type Aditional = Array<string | undefined>;
+type Additional = Array<string | undefined>;
 
-export const cn = (className: string, mods?: Mods | Aditional, additional?: Aditional): string => {
-  const clx: Aditional = [className];
+export const cn = (
+  className: string,
+  mods?: Mods | Additional,
+  additional?: Additional,
+): string => {
+  const clx: Additional = [className];
 
   const isMods = typeof mods !== 'undefined';
   const isAdditional = typeof additional !== 'undefined';

@@ -6,7 +6,11 @@ import { webpackPlugins } from './plugins.webpack';
 import { webpackResolve } from './resolves.webpack';
 
 export function buildWebpack(options: BuildOptions): Configuration {
-  const { mode, paths, isDev } = options;
+  const {
+    mode,
+    paths,
+    isDev,
+  } = options;
 
   return {
     mode,
@@ -15,6 +19,7 @@ export function buildWebpack(options: BuildOptions): Configuration {
       filename: '[name].[hash].js',
       path: paths.output,
       clean: true,
+      publicPath: '/',
     },
     plugins: webpackPlugins(options),
     module: {

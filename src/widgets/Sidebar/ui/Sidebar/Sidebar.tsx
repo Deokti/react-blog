@@ -33,7 +33,7 @@ export const Sidebar = memo(({ className, theme = Theme.LIGHT }: SidebarProps) =
         ))}
       </ul>
 
-      <ThemeSwither className={styles.themeSwither} />
+      <ThemeSwither className={styles.themeSwitcher} />
       <Button
         className={cn(styles.button, [styles[theme]])}
         onClick={toggleCollapsed}
