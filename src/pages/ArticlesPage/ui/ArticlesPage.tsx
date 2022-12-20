@@ -1,4 +1,5 @@
 import { cn } from 'shared/lib/classNames';
+import { useTranslation } from 'react-i18next';
 import styles from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
@@ -7,11 +8,11 @@ interface ArticlesPageProps {
 
 export const ArticlesPage = (props: ArticlesPageProps) => {
   const { className } = props;
+  const { t } = useTranslation('article');
 
   return (
     <div className={cn(styles.articlePage, [className])}>
-      {/* eslint-disable-next-line i18next/no-literal-string */}
-      <h1>Articles Page</h1>
+      <h1>{t('Страница со статьями')}</h1>
     </div>
   );
 };
