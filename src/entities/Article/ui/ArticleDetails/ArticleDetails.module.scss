@@ -1,3 +1,57 @@
-.Article {
-  min-height: 100vh;
+.ArticleDetails {
+  min-height: var(--app-min-height-vh);
+  max-width: var(--article-max-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.articleHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  margin-top: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+.types {
+  display: flex;
+  padding-left: 0;
+  margin-top: 4px;
+  gap: 5px;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.type {
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 20px;
+  border-top: 1px solid #d5dddf;
+  padding: 10px 0;
+}
+
+.footerIcon,
+.footer {
+  display: flex;
+  align-items: center;
+}
+
+.footerIcon {
+  gap: 2px;
+  font-size: 14px;
+  color: #798e98;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 20px;
+  text-align: justify;
 }

@@ -2,8 +2,10 @@
   --bg-primary: #fff;
   --bg-secondary: #eaeaea;
   --font-color: #14142b;
+  --font-color-rgb: 20, 20, 43;
   --primary-color: #40a9ff;
   --primary-color-rgb: 64, 169, 255;
+  --font-color-secondary: #777;
 
   // BUTTON
   --button-primary-hover: #3ea2f4;
@@ -14,4 +16,8 @@
   // MODAL
   --modal-bg-color: #fff;
   --modal-border-color: #d9d9d9;
+
+  // CODE
+  --code-bg: #fbfdff;
+  --code-border: #e5e8ec;
 }

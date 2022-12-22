@@ -1,0 +1,12 @@
+.ArticleNoteBlock {
+  border: 1px dashed #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 10px;
+  max-width: 90%;
+}
+
+.text {
+  margin-bottom: 0 !important;
+}

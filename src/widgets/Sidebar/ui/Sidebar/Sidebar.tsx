@@ -15,8 +15,14 @@ interface SidebarProps {
   theme?: Theme;
 }
 
-export const Sidebar = memo(({ className, theme = Theme.LIGHT }: SidebarProps) => {
-  const { collapsed, toggleCollapsed } = useSidebarCollapsed();
+export const Sidebar = memo(({
+  className,
+  theme = Theme.LIGHT,
+}: SidebarProps) => {
+  const {
+    collapsed,
+    toggleCollapsed,
+  } = useSidebarCollapsed();
 
   return (
     <div
@@ -26,7 +32,6 @@ export const Sidebar = memo(({ className, theme = Theme.LIGHT }: SidebarProps) =
         styles[theme],
       ])}
     >
-
       <ul className={styles.menu}>
         {SidebarItemList.map((item) => (
           <SidebarItem item={item} collapsed={collapsed} key={item.path} />

@@ -9,6 +9,7 @@ interface ToastProviderProps {
 export const ToastProvider = ({ children }: ToastProviderProps) => (
   <>
     {children}
-    <ToastContainer />
+    {/* eslint-disable-next-line i18next/no-literal-string */}
+    <ToastContainer autoClose={2000} />
   </>
 );

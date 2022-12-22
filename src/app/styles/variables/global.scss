@@ -19,12 +19,16 @@
 
   // App Inner
   --app-inner-padding: 20px;
+  --app-min-height-vh: calc(100vh - var(--header-height) - var(--app-inner-padding) * 2);
 
   // Modal
   --modal-background-color: rgba(0 0 0 / 40%);
 
   // Z - index
   --modal-z-index: 10;
+
+  // Article
+  --article-max-width: 870px;
 
   // COLORS
   --font-error: #d32f2f;

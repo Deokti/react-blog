@@ -36,7 +36,7 @@ module.exports = {
       {
         markupOnly: true,
 
-        ignoreAttribute: ['data-testid', 'to', 'onClick', 'name', 'alt'],
+        ignoreAttribute: ['data-testid', 'to', 'onClick', 'name', 'alt', 'language'],
       },
     ],
     'max-len': ['error', { ignoreComments: true, code: 100 }],

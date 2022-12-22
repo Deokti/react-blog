@@ -1,7 +1,7 @@
 import { cn } from 'shared/lib/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks';
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import {
   fetchArticleById,
 } from 'entities/Article/model/services/fetchArticleById/fetchArticleById';
@@ -11,12 +11,24 @@ import {
   Text, TextSize, TextTag, TextTheme, TextWeight,
 } from 'shared/ui/Text';
 import { useTranslation } from 'react-i18next';
-import {
-  getArticleIsLoading,
-} from 'entities/Article/model/selectors/getArticleIsLoading/getArticleIsLoading';
 import { Loader } from 'shared/ui/Loader';
-import styles from './ArticleDetails.module.scss';
+import { getArticleData } from 'entities/Article/model/selectors/getArticleData/getArticleData';
+import { Avatar, AvatarVariant } from 'shared/ui/Avatar';
+import { HiOutlineExternalLink } from 'react-icons/hi';
+import { AiOutlineEye } from 'react-icons/ai';
+import { getArticleIsLoading } from '../../model/selectors/getArticleIsLoading/getArticleIsLoading';
+import { ArticleNoteBlockComponent } from '../ArticleNoteBlockComponent/ArticleNoteBlockComponent';
+import {
+  ArticleImageBlockComponent,
+} from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import {
+  ArticleDefinitionBlockComponent,
+} from '../ArticleDefinitionBlockComponent/ArticleDefinitionBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleBlock, ArticleBlockType } from '../../model/types/atricle';
 import { articleReducer } from '../../model/slice/articleSlice';
+import styles from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
   className?: string;
@@ -35,8 +47,31 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation('article');
 
+  const isLoading = useSelector(getArticleIsLoading);
   const error = useSelector(getArticleError);
-  const IsLoading = useSelector(getArticleIsLoading);
+  const article = useSelector(getArticleData);
+
+  const renderBlock = useCallback((block: ArticleBlock) => {
+    switch (block?.type) {
+    case ArticleBlockType.NOTE:
+      return <ArticleNoteBlockComponent block={block} />;
+
+    case ArticleBlockType.IMAGE:
+      return <ArticleImageBlockComponent block={block} />;
+
+    case ArticleBlockType.CODE:
+      return <ArticleCodeBlockComponent block={block} />;
+
+    case ArticleBlockType.DEFINITION:
+      return <ArticleDefinitionBlockComponent block={block} />;
+
+    case ArticleBlockType.TEXT:
+      return <ArticleTextBlockComponent block={block} />;
+
+    default:
+      return null;
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(fetchArticleById(id));
@@ -44,7 +79,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
   let content;
 
-  if (IsLoading) {
+  if (isLoading) {
     content = (
       <Loader />
     );
@@ -61,8 +96,81 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     );
   } else {
     content = (
-      // eslint-disable-next-line i18next/no-literal-string
-      <h1>ArticleDetails</h1>
+      <article>
+        <header className={styles.articleHeader}>
+          <Avatar src={article?.createdBy?.avatar} size={28} variant={AvatarVariant.ROUNDED} />
+          <Text
+            size={TextSize.M}
+            tag={TextTag.H2}
+            weight={TextWeight.BOLD}
+          >
+            {article?.createdBy?.name}
+          </Text>
+          <Text
+            size={TextSize.SM}
+            tag={TextTag.SPAN}
+            theme={TextTheme.SECONDARY}
+          >
+            {article?.createdAt}
+          </Text>
+        </header>
+
+        <div className={styles.title}>
+          <Text
+            size={TextSize.L}
+            tag={TextTag.H1}
+            weight={TextWeight.BOLD}
+          >
+            {article?.title}
+          </Text>
+          {article?.originalArticle && (
+            <a
+              href={article?.originalArticle}
+              className={styles.link}
+              rel="noreferrer"
+              target="_blank"
+              title={t('Перейти к оригинальной статье')}
+            >
+              <HiOutlineExternalLink />
+            </a>
+          )}
+        </div>
+
+        <ul className={styles.types}>
+          {article?.types?.map((type) => (
+            <Text
+              className={styles.type}
+              key={type}
+              theme={TextTheme.SECONDARY}
+              tag={TextTag.LI}
+              size={TextSize.SM}
+            >
+              {`${type},`}
+            </Text>
+          ))}
+        </ul>
+
+        {article?.subtitle && (
+          <Text
+            tag={TextTag.P}
+            className={styles.subtitle}
+          >
+            {article?.subtitle}
+          </Text>
+        )}
+
+        <div className={styles.blocks}>
+          {article?.blocks?.map(renderBlock)}
+        </div>
+
+        <footer className={styles.footer}>
+          <div className={styles.footerIcon}>
+            <AiOutlineEye size={20} />
+            {article?.views}
+          </div>
+        </footer>
+      </article>
+
     );
   }
 

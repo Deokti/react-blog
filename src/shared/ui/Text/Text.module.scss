@@ -17,8 +17,16 @@
   padding: 0;
 }
 
+.text.p {
+  margin-bottom: 16px;
+}
+
 .text.default {
   color: var(--font-color);
+}
+
+.text.secondary {
+  color: var(--font-color-secondary);
 }
 
 .text.error {

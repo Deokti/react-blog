@@ -1,10 +1,11 @@
-import { createElement, memo } from 'react';
+import { createElement, memo, ReactNode } from 'react';
 import { cn } from 'shared/lib/classNames';
 import styles from './Text.module.scss';
 
 export enum TextTheme {
   DEFAULT = 'default',
   ERROR = 'error',
+  SECONDARY = 'secondary',
 }
 
 export enum TextTag {
@@ -16,6 +17,7 @@ export enum TextTag {
   H6 = 'h6',
   P = 'p',
   SPAN = 'span',
+  LI = 'li',
 }
 
 export enum TextSize {
@@ -43,7 +45,7 @@ export enum TextAlight {
 export interface TextProps {
   className?: string;
   theme?: TextTheme;
-  children: string;
+  children: ReactNode;
   tag?: TextTag;
   size?: TextSize;
   weight?: TextWeight;
@@ -65,6 +67,7 @@ export const Text = memo((props: TextProps) => {
     className,
     styles[theme],
     styles[align],
+    styles[tag],
     styles[size],
     styles[weight],
   ];

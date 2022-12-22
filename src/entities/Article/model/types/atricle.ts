@@ -19,6 +19,7 @@ export interface ArticleBlockBase {
 
 export interface ArticleTextBlock extends ArticleBlockBase {
   type: ArticleBlockType.TEXT;
+  title?: string;
   paragraph: string[];
 }
 
@@ -47,15 +48,19 @@ export interface ArticleNoteBlock extends ArticleBlockBase {
 // eslint-disable-next-line max-len
 export type ArticleBlock = ArticleTextBlock | ArticleDefinitionBlock | ArticleCodeBlock | ArticleImageBlock | ArticleNoteBlock;
 
+export interface CreatedBy {
+  avatar: string;
+  name: string;
+}
 export interface Article {
   id: string,
   title: string
   subtitle: string
   img: string
   originalArticle: string
-  createdBy: string
+  createdBy: CreatedBy
   createdAt: string
   views: number
   types: ArticleType[],
-  blocks: ArticleBlock
+  blocks: ArticleBlock[]
 }
