@@ -16,6 +16,7 @@ import { getArticleData } from 'entities/Article/model/selectors/getArticleData/
 import { Avatar, AvatarVariant } from 'shared/ui/Avatar';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import { AiOutlineEye } from 'react-icons/ai';
+import { LoaderAlign } from 'shared/ui/Loader/Loader';
 import { getArticleIsLoading } from '../../model/selectors/getArticleIsLoading/getArticleIsLoading';
 import { ArticleNoteBlockComponent } from '../ArticleNoteBlockComponent/ArticleNoteBlockComponent';
 import {
@@ -54,19 +55,19 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
   const renderBlock = useCallback((block: ArticleBlock) => {
     switch (block?.type) {
     case ArticleBlockType.NOTE:
-      return <ArticleNoteBlockComponent block={block} />;
+      return <ArticleNoteBlockComponent block={block} key={block.id} />;
 
     case ArticleBlockType.IMAGE:
-      return <ArticleImageBlockComponent block={block} />;
+      return <ArticleImageBlockComponent block={block} key={block.id} />;
 
     case ArticleBlockType.CODE:
-      return <ArticleCodeBlockComponent block={block} />;
+      return <ArticleCodeBlockComponent block={block} key={block.id} />;
 
     case ArticleBlockType.DEFINITION:
-      return <ArticleDefinitionBlockComponent block={block} />;
+      return <ArticleDefinitionBlockComponent block={block} key={block.id} />;
 
     case ArticleBlockType.TEXT:
-      return <ArticleTextBlockComponent block={block} />;
+      return <ArticleTextBlockComponent block={block} key={block.id} />;
 
     default:
       return null;
@@ -81,7 +82,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
   if (isLoading) {
     content = (
-      <Loader />
+      <Loader align={LoaderAlign.CENTER} />
     );
   } else if (error) {
     content = (
