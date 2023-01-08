@@ -12,10 +12,12 @@
 
   // Header
   --header-height: 65px;
+  --header-z-index: 4;
 
   // Sidebar
   --sidebar-width: 390px;
   --sidebar-collapsed: 110px;
+  --sidebar-z-index: 4;
 
   // App Inner
   --app-inner-padding: 20px;
@@ -32,4 +34,8 @@
 
   // COLORS
   --font-error: #d32f2f;
+
+  // Transition
+  --transition-duration: 0.2s;
+  --transition-function: ease-in-out;
 }

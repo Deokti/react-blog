@@ -8,7 +8,11 @@ import {
 import { useSelector } from 'react-redux';
 import { getArticleError } from 'entities/Article/model/selectors/getArticleError/getArticleError';
 import {
-  Text, TextSize, TextTag, TextTheme, TextWeight,
+  Text,
+  TextSize,
+  TextTag,
+  TextTheme,
+  TextWeight,
 } from 'shared/ui/Text';
 import { useTranslation } from 'react-i18next';
 import { Loader } from 'shared/ui/Loader';
@@ -171,7 +175,6 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
           </div>
         </footer>
       </article>
-
     );
   }
 

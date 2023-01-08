@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { cn } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button';
-import { LangSwither } from 'widgets/LangSwither/ui/LangSwither';
+import { LangSwitcher } from 'widgets/LangSwither/ui/LangSwitcher';
 import styles from './Header.module.scss';
 
 interface HeaderProps {
@@ -33,10 +33,12 @@ export const Header = memo(({ className, theme = Theme.LIGHT }: HeaderProps) => 
     dispatch(userActions.logout());
   }, [dispatch]);
 
+  const additional = [className, styles[theme]];
+
   if (authData) {
     return (
-      <header className={cn(styles.header, [className, styles[theme]])}>
-        <LangSwither />
+      <header className={cn(styles.header, additional)}>
+        <LangSwitcher />
 
         <Button
           theme={ButtonTheme.CLEAR}
@@ -50,8 +52,8 @@ export const Header = memo(({ className, theme = Theme.LIGHT }: HeaderProps) => 
   }
 
   return (
-    <header className={cn(styles.header, [className, styles[theme]])}>
-      <LangSwither />
+    <header className={cn(styles.header, additional)}>
+      <LangSwitcher />
 
       <Button
         theme={ButtonTheme.CLEAR}

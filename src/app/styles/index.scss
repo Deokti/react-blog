@@ -23,4 +23,5 @@ h1 {
 .app-inner {
   flex-grow: 1;
   padding: var(--app-inner-padding);
+  margin-top: var(--header-height);
 }

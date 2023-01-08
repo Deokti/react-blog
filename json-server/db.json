@@ -4,6 +4,11 @@
       "id": 1,
       "username": "admin",
       "password": "admin"
+    },
+    {
+      "id": 2,
+      "username": "deokmi",
+      "password": "deokmi"
     }
   ],
   "articles": [
@@ -192,17 +197,17 @@
           ]
         },
         {
-          "id": "27",
+          "id": "28",
           "type": "CODE",
           "code": "let protoA = {x: 10};\nlet protoB = {x: 20};\n \n// То же, что и `let objectC = {__proto__: protoA};`:\nlet objectC = Object.create(protoA);\nconsole.log(objectC.x); // 10\n \n// Изменяем прототип:\nObject.setPrototypeOf(objectC, protoB);\nconsole.log(objectC.x); // 20"
         },
         {
-          "id": "28",
+          "id": "29",
           "type": "NOTE",
           "text": "Обратите внимание: несмотря на то, что свойство __proto__ на сегодняшний день стандартизовано, и проще для объяснения материала, на практике рекомендовано использование API методов для манипуляции с прототипами, таких как Object.create, Object.getPrototypeOf, Object.setPrototypeOf, и схожих в модуле Reflect."
         },
         {
-          "id": "29",
+          "id": "30",
           "type": "TEXT",
           "paragraph": [
             "На примере Object.prototype, мы видим, что один и тот же прототип может наследоваться многими объектами. На этом принципе простроено классовое наследование в ECMAScript. Давайте рассмотрим пример и заглянем в детали реализации абстракции “класс” в JS."
@@ -211,14 +216,32 @@
       ]
     }
   ],
-  "profile": {
-    "username": "KaizDA",
-    "firstname": "Kain",
-    "lastname": "Randolph",
-    "age": 24,
-    "currency": "RUB",
-    "country": "Russia",
-    "city": "Moscow",
-    "avatar": "https://sun6-22.userapi.com/s/v1/if1/Pr3hfZHumqP2o7GDvHiUBtZmqjlh0plvSrlFfow41X8zoHPMn5Csr6agnOc70WmVdi3jbw.jpg?size=500x618&quality=96&crop=0,0,500,618&ava=1"
-  }
+  "comments": [
+    {
+      "id": 1,
+      "articleId": 1,
+      "text": "Статья не полная. Если перейти на оригинальный сайт, на нём расскрываются больше тем. Дополните!",
+      "userId": 1,
+      "createdAt": "2017-12-06"
+    },
+    {
+      "id": 2,
+      "articleId": 1,
+      "text": "Какой-то комментария, чтобы проверить его отображение на странице",
+      "userId": 2,
+      "createdAt": "2017-12-07"
+    }
+  ],
+  "profile": [
+    {
+      "username": "KaizDA",
+      "firstname": "Kain",
+      "lastname": "Randolph",
+      "age": 24,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Moscow",
+      "avatar": "https://sun6-22.userapi.com/s/v1/if1/Pr3hfZHumqP2o7GDvHiUBtZmqjlh0plvSrlFfow41X8zoHPMn5Csr6agnOc70WmVdi3jbw.jpg?size=500x618&quality=96&crop=0,0,500,618&ava=1"
+    }
+  ]
 }

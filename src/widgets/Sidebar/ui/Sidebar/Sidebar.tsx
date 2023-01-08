@@ -24,29 +24,37 @@ export const Sidebar = memo(({
     toggleCollapsed,
   } = useSidebarCollapsed();
 
-  return (
-    <div
-      data-testid="sidebar"
-      className={cn(styles.sidebar, { [styles.collapsed]: collapsed }, [
-        className,
-        styles[theme],
-      ])}
-    >
-      <ul className={styles.menu}>
-        {SidebarItemList.map((item) => (
-          <SidebarItem item={item} collapsed={collapsed} key={item.path} />
-        ))}
-      </ul>
+  const additional = [
+    className,
+    styles[theme],
+  ];
+  const mods = {
+    [styles.collapsed]: collapsed,
+  };
 
-      <ThemeSwither className={styles.themeSwitcher} />
-      <Button
-        className={cn(styles.button, [styles[theme]])}
-        onClick={toggleCollapsed}
-        data-testid="on-toggle"
-        theme={ButtonTheme.CLEAR}
+  return (
+    <>
+      <div className={cn(styles.sidebarEmpty, mods)} />
+      <div
+        data-testid="sidebar"
+        className={cn(styles.sidebar, mods, additional)}
       >
-        <AiOutlineRight size={25} className={styles.icon} />
-      </Button>
-    </div>
+        <ul className={styles.menu}>
+          {SidebarItemList.map((item) => (
+            <SidebarItem item={item} collapsed={collapsed} key={item.path} />
+          ))}
+        </ul>
+
+        <ThemeSwither className={styles.themeSwitcher} />
+        <Button
+          className={cn(styles.button, [styles[theme]])}
+          onClick={toggleCollapsed}
+          data-testid="on-toggle"
+          theme={ButtonTheme.CLEAR}
+        >
+          <AiOutlineRight size={25} className={styles.icon} />
+        </Button>
+      </div>
+    </>
   );
 });

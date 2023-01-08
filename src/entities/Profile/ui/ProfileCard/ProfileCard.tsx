@@ -17,20 +17,16 @@ export interface ProfileCardProps {
   isLoading?: boolean;
   error?: string;
   readonly?: boolean;
-  onChangeUsername?: (username: string) => void
-  onChangeFirstname?: (username: string) => void
-  onChangeLastname?: (username: string) => void
-  onChangeAvatar?: (username: string) => void
-  onChangeAge?: (username: string) => void
+  onChangeUsername?: (username: string) => void;
+  onChangeFirstname?: (username: string) => void;
+  onChangeLastname?: (username: string) => void;
+  onChangeAvatar?: (username: string) => void;
+  onChangeAge?: (username: string) => void;
 }
 
-const countryOptions = Object
-  .entries(Country)
-  .map((val) => ({ value: val[0], label: val[1] }));
+const countryOptions = Object.entries(Country).map((val) => ({ value: val[0], label: val[1] }));
 
-const currencyOptions = Object
-  .entries(Currency)
-  .map((val) => ({ value: val[0], label: val[1] }));
+const currencyOptions = Object.entries(Currency).map((val) => ({ value: val[0], label: val[1] }));
 
 export const ProfileCard = (props: ProfileCardProps) => {
   const {
@@ -58,13 +54,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
   if (error) {
     return (
       <div className={styles.card}>
-        <Text
-          size={TextSize.L}
-          weight={TextWeight.BLACK}
-          theme={TextTheme.ERROR}
-        >
+        <Text size={TextSize.L} weight={TextWeight.BLACK} theme={TextTheme.ERROR}>
           {t(error)}
-
         </Text>
       </div>
     );
@@ -82,12 +73,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
           />
         </div>
         <div className={styles.item}>
-          <Text
-            tag={TextTag.H2}
-            size={TextSize.M}
-            weight={TextWeight.BOLD}
-            className={styles.text}
-          >
+          <Text tag={TextTag.H2} size={TextSize.M} weight={TextWeight.BOLD} className={styles.text}>
             {t('Имя пользователя')}
           </Text>
           <Input
@@ -99,14 +85,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
         </div>
 
         <div className={styles.item}>
-          <Text
-            tag={TextTag.H2}
-            size={TextSize.M}
-            weight={TextWeight.BOLD}
-            className={styles.text}
-          >
+          <Text tag={TextTag.H2} size={TextSize.M} weight={TextWeight.BOLD} className={styles.text}>
             {t('Имя')}
-
           </Text>
           <Input
             className={styles.input}
@@ -117,14 +97,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
         </div>
 
         <div className={styles.item}>
-          <Text
-            tag={TextTag.H2}
-            size={TextSize.M}
-            weight={TextWeight.BOLD}
-            className={styles.text}
-          >
+          <Text tag={TextTag.H2} size={TextSize.M} weight={TextWeight.BOLD} className={styles.text}>
             {t('Фамилия')}
-
           </Text>
           <Input
             className={styles.input}
@@ -136,18 +110,10 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
         <div className={styles.item}>
           <div>
-            <Text
-              tag={TextTag.H2}
-              size={TextSize.M}
-              weight={TextWeight.BOLD}
-            >
+            <Text tag={TextTag.H2} size={TextSize.M} weight={TextWeight.BOLD}>
               {t('Ваша фотография')}
-
             </Text>
-            <Text
-              tag={TextTag.SPAN}
-              size={TextSize.SM}
-            >
+            <Text tag={TextTag.SPAN} size={TextSize.SM}>
               {t('Это будет отображено в вашем профиле')}
             </Text>
           </div>
@@ -160,14 +126,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
         </div>
 
         <div className={styles.item}>
-          <Text
-            tag={TextTag.H2}
-            size={TextSize.M}
-            weight={TextWeight.BOLD}
-            className={styles.text}
-          >
+          <Text tag={TextTag.H2} size={TextSize.M} weight={TextWeight.BOLD} className={styles.text}>
             {t('Возраст')}
-
           </Text>
           <Input
             className={styles.input}
@@ -178,13 +138,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
         </div>
 
         <div className={styles.item}>
-          <Text
-            tag={TextTag.H2}
-            size={TextSize.M}
-            weight={TextWeight.BOLD}
-          >
+          <Text tag={TextTag.H2} size={TextSize.M} weight={TextWeight.BOLD}>
             {t('Валюта')}
-
           </Text>
 
           <Select
@@ -196,11 +151,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         </div>
 
         <div className={styles.item}>
-          <Text
-            tag={TextTag.H2}
-            size={TextSize.M}
-            weight={TextWeight.BOLD}
-          >
+          <Text tag={TextTag.H2} size={TextSize.M} weight={TextWeight.BOLD}>
             {t('Страна')}
           </Text>
           <Select

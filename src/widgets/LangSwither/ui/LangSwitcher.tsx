@@ -5,11 +5,11 @@ import { memo, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import styles from './LangSwither.module.scss';
 
-interface LangSwitherProps {
+interface LangSwitcherProps {
   className?: string;
 }
 
-export const LangSwither = memo(({ className }: LangSwitherProps) => {
+export const LangSwitcher = memo(({ className }: LangSwitcherProps) => {
   const { i18n } = useTranslation();
   const [toggle, setToggle] = useState(false);
 
