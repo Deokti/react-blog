@@ -2,5 +2,9 @@
   "Страница для одной статьи": "Page for one a article",
   "Страница со статьями": "Page with articles",
   "ARTICLE_ERROR": "Article not found",
-  "Перейти к оригинальной статье": "Go to the original article"
+  "Перейти к оригинальной статье": "Go to the original article",
+  "Ваш комментарий": "Your comment",
+  "Отправить": "Send",
+  "Код скопирован": "Copied to Clipboard",
+  "SHIFT + ENTER": "To send a message: SHIFT + ENTER"
 }

@@ -12,6 +12,7 @@ import { LoginSchema } from 'features/AuthByUsername';
 import { NavigateOptions, To } from 'react-router-dom';
 import { ArticleSchema } from 'entities/Article/model/types/articleSchema';
 import { ArticleCommentSchema } from 'pages/ArticlePage/model/types/ArticleCommentSchema';
+import { CommentFormScheme } from 'features/AddCommentForm/model/types/commentFormScheme';
 
 export interface StoreSchema {
   user: UserSchema;
@@ -21,6 +22,7 @@ export interface StoreSchema {
   profile?: ProfileSchema;
   article?: ArticleSchema;
   articleComments?: ArticleCommentSchema;
+  articleCommentForm?: CommentFormScheme;
 }
 
 export type KeyFromStoreSchema = keyof StoreSchema;

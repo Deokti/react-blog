@@ -2,20 +2,16 @@ import { cn } from 'shared/lib/classNames';
 import { useTranslation } from 'react-i18next';
 import { ArticleDetails } from 'entities/Article';
 import { useParams } from 'react-router-dom';
-import {
-  Text, TextTheme, TextWeight,
-} from 'shared/ui/Text';
+import { Text, TextTheme, TextWeight } from 'shared/ui/Text';
 import { CommentList } from 'entities/Comment';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
-import {
-  getArticleCommentIsLoading,
-} from 'pages/ArticlePage/model/selectors/comment';
+import { getArticleCommentIsLoading } from 'pages/ArticlePage/model/selectors/comment';
 import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks';
-import {
-  fetchCommentsByArticleId,
-} from 'pages/ArticlePage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { AddCommentForm } from 'features/AddCommentForm';
+// eslint-disable-next-line max-len
+import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import styles from './ArticlePage.module.scss';
 import { articleCommentsReducer, getArticleComments } from '../model/slice/articleCommentSlice';
 
@@ -56,10 +52,8 @@ export const ArticlePage = (props: ArticlePageProps) => {
             {t('Комментарии')}
           </Text>
         )}
-        <CommentList
-          isLoading={isLoading}
-          comments={comments}
-        />
+        <CommentList isLoading={isLoading} comments={comments} />
+        {!isLoading && <AddCommentForm className="mt-25" />}
       </div>
     </DynamicModuleLoader>
   );

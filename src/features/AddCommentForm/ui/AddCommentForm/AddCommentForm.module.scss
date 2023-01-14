@@ -1,0 +1,31 @@
+.addCommentForm {
+  background-color: var(--bg-secondary);
+  padding: 18px 16px 16px;
+  position: relative;
+  border-top: 1px solid rgb(146 156 165 / 40%);
+}
+
+.textarea {
+  border: 1px solid var(--bg-secondary);
+  background-color: var(--bg-primary);
+  color: var(--font-color);
+  width: 100%;
+  min-height: 80px;
+  padding: 8px 15px;
+  resize: none;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button {
+  padding: 7px 15px !important;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
